@@ -15,7 +15,13 @@
     "start": "react-scripts start",
     "build": "babel src -d dist",
     "test": "jest --coverage",
+    "test:precommit": "jest --silent --passWithNoTests",
     "flow": "flow"
+  },
+  "pre-commit": {
+    "run": [
+      "test:precommit"
+    ]
   },
   "eslintConfig": {
     "extends": [
