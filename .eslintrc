@@ -17,6 +17,7 @@
     ],
     "parser": "@babel/eslint-parser",
     "rules": {
-        "semi": [2, "always"]
+        "semi": [1, "always"],
+        "indent": ["error", "tab"]
     }
 }
