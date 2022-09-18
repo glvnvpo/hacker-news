@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
+import {Main, Layout, SingleStory} from "./pages";
 import './App.css';
+import {MAIN_PAGE_PATH, ROOT_PATH, SINGLE_STORY_PAGE_PATH} from "./routing/constants";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const  App = () => {
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path={ROOT_PATH} element={<Layout/>}>
+					<Route index element={<Navigate to={MAIN_PAGE_PATH} replace />}/>
+					<Route path={MAIN_PAGE_PATH} element={<Main/>}/>
+					<Route path={SINGLE_STORY_PAGE_PATH} element={<SingleStory />}/>
+					<Route path="*" element={<Navigate to={MAIN_PAGE_PATH} replace />}/>
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
+};
 
-export default App;
