@@ -7,6 +7,7 @@ import {isEmpty, isNull} from "lodash";
 import {ITEM} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
 import {MAIN_PAGE_PATH} from "../../routing/constants";
+import {getDateFromTimestamp} from "../../helpers/get-date-from-timestamp";
 
 type Story = {
 	id: number | string;
@@ -108,10 +109,10 @@ export const SingleStory = () => {
 			{story.title}
 			<button onClick={() => updateStoryAndComments(id)} >Update comments </button>
 			{!isEmpty(comments) && comments.map(({id, by, text, time, children}: Comment) =>
-				<div key={id}><b>{by}</b> {text}
+				<div key={id}><span onClick={()=>{}}><b>{by}</b>{getDateFromTimestamp(time)} {text}</span>
 					<button onClick={()=>loadChildrenComments(id, kids)}>Download children comments</button>
 					<div> <b>Children comments:</b></div>
-					{!isEmpty(children) && children.map(({id, by, text, time}) => <div key={id} style={{background: 'lightpink'}}><b>{by}</b> {text}</div> )}
+					{!isEmpty(children) && children.map(({id, by, text, time}) => <div key={id} style={{background: 'lightpink'}}><b>{by}</b> {getDateFromTimestamp(time)} {text}</div> )}
 				</div>
 			)}
 		</div>);
