@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/bootstrap";
+
+.layout {
+  background: #ff6600;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  h2 {
+    color: white;
+  }
+}
