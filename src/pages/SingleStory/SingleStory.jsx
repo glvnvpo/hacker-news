@@ -4,6 +4,7 @@ import React, { useState, useEffect }  from 'react';
 import {useParams, useNavigate, useLocation} from "react-router-dom";
 import axios from 'axios';
 import {isEmpty, isNull} from "lodash";
+import {Button} from "react-bootstrap";
 import {ITEM} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
 import {MAIN_PAGE_PATH} from "../../routing/constants";
@@ -105,9 +106,9 @@ export const SingleStory = () => {
 
 	return (
 		<div>SINGLE STORY PAGE
-			<button onClick={()=>goBackToStories()}>Go back to stories</button>
+			<Button onClick={()=>goBackToStories()} variant="outline-primary">Go back to stories</Button>
 			{story.title}
-			<button onClick={() => updateStoryAndComments(id)} >Update comments </button>
+			<Button onClick={() => updateStoryAndComments(id)} variant="outline-success">Update comments</Button>
 			{!isEmpty(comments) && comments.map(({id, by, text, time, children}: Comment) =>
 				<div key={id}><span onClick={()=>{}}><b>{by}</b>{getDateFromTimestamp(time)} {text}</span>
 					<button onClick={()=>loadChildrenComments(id, kids)}>Download children comments</button>
