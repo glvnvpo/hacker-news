@@ -73,12 +73,9 @@ export const Main = () => {
 					as={Link}
 					to={`${MAIN_PAGE_PATH}/${id}`}
 				>
-					<Card.Header>{title}</Card.Header>
 					<Card.Body>
-						<Card.Subtitle className="mb-2 text-muted">{getDateFromTimestamp(time)}</Card.Subtitle>
-						<Card.Subtitle className="mb-2 text-muted">{by}</Card.Subtitle>
-						<Card.Subtitle className="mb-2 text-muted">{score} points</Card.Subtitle>
-
+						<Card.Title>{title}</Card.Title>
+						<Card.Subtitle className="mb-2 text-muted">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
 					</Card.Body>
 				</Card>
 			) : 'EMPTY'}

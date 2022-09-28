@@ -2,15 +2,14 @@
 
 import React from 'react';
 import {Outlet} from 'react-router-dom';
+import './styles.scss';
 
-type Props = {
-
-}
-
-export const Layout = (props: Props) => {
+export const Layout = () => {
 	return (
 		<>
-			<div>LAYOUT PAGE</div>
+			<div className='layout'>
+				<h2>HACKER NEWS</h2>
+			</div>
 			<Outlet/>
 		</>
 	);
