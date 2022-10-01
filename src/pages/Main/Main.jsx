@@ -63,22 +63,27 @@ export const Main = () => {
 
 	return (
 		<div className="main">
-            MAIN PAGE
-			<Button onClick={() => loadNewStories()} variant="outline-success">Update stories</Button>
-			{!isEmpty(stories) ? stories.map(({id, title, by, time, score}: Story)=>
-				<Card
-					key={id}
-					style={{ width: '50rem' }}
-					className="card"
-					as={Link}
-					to={`${MAIN_PAGE_PATH}/${id}`}
-				>
-					<Card.Body>
-						<Card.Title>{title}</Card.Title>
-						<Card.Subtitle className="mb-2 text-muted">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
-					</Card.Body>
-				</Card>
-			) : 'EMPTY'}
+			<div className='content'>
+				<div className='header'>
+					<h4>Latest news</h4>
+					<Button onClick={() => loadNewStories()} variant="outline-success">Update news</Button>
+				</div>
 
+				<div className='cards'>
+					{!isEmpty(stories) ? stories.map(({id, title, by, time, score}: Story)=>
+						<Card
+							key={id}
+							as={Link}
+							to={`${MAIN_PAGE_PATH}/${id}`}
+						>
+							<Card.Body>
+								<Card.Title>{title}</Card.Title>
+								<Card.Subtitle className="mb-2">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
+							</Card.Body>
+						</Card>
+					) : 'EMPTY'}
+				</div>
+
+			</div>
 		</div>);
 };
