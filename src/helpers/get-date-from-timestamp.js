@@ -7,5 +7,5 @@ export const getDateFromTimestamp = (timestamp: string | number): string => {
 	const month = date.getMonth() + 1;
 	const year = date.getFullYear();
 
-	return `${day}.${month < 10 && '0'}${month}.${year}`;
+	return `${day < 10 ? '0' : 0}${day}.${month < 10 ? '0' : ''}${month}.${year}`;
 };
