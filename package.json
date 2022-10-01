@@ -34,6 +34,14 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
+    "modulePathIgnorePatterns": ["<rootDir>/dist/"],
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)(spec|test).[jt]s?(x)"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
