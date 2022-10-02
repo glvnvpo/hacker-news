@@ -70,21 +70,22 @@ export const Main = () => {
 	return (
 		<div className="main">
 			<div className='content'>
-				<div className='header'>
-					<h4>Latest news</h4>
+				<div className='header bg-white'>
+					<h4 className="color-grey2">Latest news</h4>
 					<Button onClick={() => loadNewStories()} variant="outline-success">Update news</Button>
 				</div>
 
-				<div className='cards'>
+				<div className='cards mt-10'>
 					{!isEmpty(stories) ? stories.map(({id, title, by, time, score}: Story)=>
 						<Card
 							key={id}
 							as={Link}
 							to={`${MAIN_PAGE_PATH}/${id}`}
+							className='mb-10'
 						>
 							<Card.Body>
-								<Card.Title>{title}</Card.Title>
-								<Card.Subtitle className="mb-2">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
+								<Card.Title className="color-orange">{title}</Card.Title>
+								<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
 							</Card.Body>
 						</Card>
 					) : 'EMPTY'}
