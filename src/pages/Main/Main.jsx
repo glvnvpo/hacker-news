@@ -1,11 +1,13 @@
 // @flow
 
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
+import {useSelector, useDispatch} from 'react-redux';
 import {Card, Button} from 'react-bootstrap';
 import axios from 'axios';
 import {isEmpty, isNull} from 'lodash';
 import './styles.scss';
+import {setStories} from '../../store/stories';
 import {ITEM, NEW_STORIES} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
 import {MAIN_PAGE_PATH} from '../../routing/constants';
@@ -24,7 +26,8 @@ const STORIES_NUMBER = 100;
 
 export const Main = () => {
 
-	const [stories, setStories] = useState([]);
+	const stories = useSelector(state => state.stories.value);
+	const dispatch = useDispatch();
 
 	let location = useLocation();
 
@@ -53,7 +56,7 @@ export const Main = () => {
 							.map(({value}) => value)
 					)
 					.finally(() =>
-						setStories(loadedStories)
+						dispatch(setStories(loadedStories))
 					);
 			})
 			.catch((err) => console.error(err));
