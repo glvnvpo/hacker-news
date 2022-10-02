@@ -40,15 +40,21 @@ export const Main = () => {
 		timer = setTimeout(loadStoriesEachMinute, MINUTE);
 	};
 
-	const loadNewStories = () =>{
+	const loadNewStories = () => {
 		axios(NEW_STORIES())
 			.then(async ({data}) => {
 				const newestStories = [...data.slice(0, STORIES_NUMBER)];
 				let loadedStories = [];
 				const promises = newestStories.map(loadOneStory);
-				await Promise.all(promises)
-					.then(story => loadedStories.push(...story))
-					.finally(() => setStories(loadedStories));
+				await Promise.allSettled(promises)
+					.then(data =>
+						loadedStories = data
+							.filter(({status})=> status === 'fulfilled')
+							.map(({value}) => value)
+					)
+					.finally(() =>
+						setStories(loadedStories)
+					);
 			})
 			.catch((err) => console.error(err));
 	};
@@ -56,7 +62,7 @@ export const Main = () => {
 	const loadOneStory = (id: string | number) => {
 		return new Promise((resolve, reject)=> {
 			axios(ITEM(id))
-				.then(({data}) => !isNull(data) && resolve(data))
+				.then(({data}) => !isNull(data) ? resolve(data) : reject())
 				.catch(err => reject(err));
 		});
 	};
