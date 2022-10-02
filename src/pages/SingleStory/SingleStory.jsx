@@ -129,33 +129,33 @@ export const SingleStory = () => {
 
 				<Button className="mt-20 mb-10" onClick={() => goBackToStories()} variant="outline-primary">Go back to news</Button>
 
-				<Card className='story mt-10 mb-20'>
+				<Card className='story mt-10 mb-20 border-orange'>
 					<Card.Body>
-						<Card.Title>{title}</Card.Title>
-						<Card.Subtitle className="mb-2">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
-						<Card.Subtitle className="mb-2">
+						<Card.Title className="color-orange">{title}</Card.Title>
+						<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
+						<Card.Subtitle className="mb-2 color-grey">
 							{url ? <a href={url} target="_blank" rel="noreferrer">Source</a> : 'No source'}
 						</Card.Subtitle>
-						<Card.Subtitle className="mb-2">Comment count: {descendants}</Card.Subtitle>
+						<Card.Subtitle className="mb-2 color-grey">Comment count: {descendants}</Card.Subtitle>
 						{ text ?
-							<Card.Text as='span' className="bold">
+							<Card.Text as='span' className="bold color-dark-grey">
 								{parse(text)}
 							</Card.Text>
-							: <span className='empty bold'>To read the text, visit the source</span>}
+							: <span className='bold color-dark-grey'>To read the text, visit the source</span>}
 					</Card.Body>
 				</Card>
 
 				<Button onClick={() => updateStoryAndComments(id)} variant="outline-success">Update comments</Button>
 
 				<div className='comments mt-20'>
-					{!isEmpty(comments) ? <h6 className='title'>Comments:</h6> : <h6 className='empty'>No comments found</h6>}
+					{!isEmpty(comments) ? <h6 className='color-dark-grey'>Comments:</h6> : <h6 className='color-grey'>No comments found</h6>}
 
 					{!isEmpty(comments) && comments.map(({id, by, text, time, children, showChildComment}: Comment = {}) =>
 						<div className='comment-wrapper mt-20' key={id}>
 							{ by && <Card className='parent' border="primary">
 								<Card.Body>
-									<Card.Subtitle className="mb-2"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
-									<Card.Text className="bold" as='span'>
+									<Card.Subtitle className="mb-2 color-grey"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
+									<Card.Text className="bold color-dark-grey" as='span'>
 										{text && parse(text)}
 									</Card.Text>
 									{ !isEmpty(children) &&
@@ -169,8 +169,8 @@ export const SingleStory = () => {
 							{ (!isEmpty(children) && showChildComment) && children.map(({id, by, text, time} = {}) =>
 								<Card key={id} className='child' border="success">
 									<Card.Body>
-										<Card.Subtitle className="mb-2"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
-										<Card.Text className="bold" as='span'>
+										<Card.Subtitle className="mb-2 color-grey"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
+										<Card.Text className="bold color-dark-grey" as='span'>
 											{text && parse(text)}
 										</Card.Text>
 									</Card.Body>
