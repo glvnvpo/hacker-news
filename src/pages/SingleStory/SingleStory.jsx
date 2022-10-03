@@ -66,7 +66,7 @@ export const SingleStory = () => {
 
 	const updateStoryAndComments = (id: number | string) => {
 		loadStory(id)
-			.then((data)=> loadComments(data));
+			.then((data) => loadComments(data));
 	};
 
 	const updateStoryAndCommentsEachMinute = (id: number | string) => {
