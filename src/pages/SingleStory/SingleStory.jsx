@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState, useEffect }  from 'react';
+import React, {useState, useEffect}  from 'react';
 import {useParams, useNavigate, useLocation} from "react-router-dom";
 import {Button, Card} from "react-bootstrap";
 import parse from 'html-react-parser';
@@ -10,6 +10,7 @@ import './styles.scss';
 import {ITEM} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
 import {MAIN_PAGE_PATH} from "../../routing/constants";
+import {Spinner} from "../../components/Spinner";
 import {getDateFromTimestamp} from "../../helpers/get-date-from-timestamp";
 
 type Story = {
@@ -38,6 +39,8 @@ export const SingleStory = () => {
 
 	const [story, setStory] = useState({});
 	const [comments, setComments] = useState([]);
+	const [isStoryLoading, setStoryLoading] = useState(true);
+	const [isCommentsLoading, setCommentsLoading] = useState(false);
 
 	const navigate = useNavigate();
 	let location = useLocation();
@@ -56,7 +59,8 @@ export const SingleStory = () => {
 					setStory(data);
 					resolve(data);
 				})
-				.catch((err) => console.error(err));
+				.catch((err) => console.error(err))
+				.finally(() => setStoryLoading(false));
 		});
 	};
 
@@ -77,12 +81,14 @@ export const SingleStory = () => {
 	const loadComments = ({kids}: Story = {}) => {
 		if (kids && !isEmpty(kids)) {
 			const promises = kids.map(loadOneComment);
+			setCommentsLoading(true);
 			Promise.all(promises)
 				.then(loadedComments => {
 					const childrenPromises = loadedComments.map(loadChildrenComments);
 					return Promise.all(childrenPromises);
 				})
-				.then((loadedComments) => setComments(loadedComments));
+				.then((loadedComments) => setComments(loadedComments))
+				.finally(() => setCommentsLoading(false));
 		}
 	};
 
@@ -130,54 +136,59 @@ export const SingleStory = () => {
 				<Button className="mt-20 mb-10" onClick={() => goBackToStories()} variant="outline-primary">Go back to news</Button>
 
 				<Card className='story mt-10 mb-20 border-orange'>
-					<Card.Body>
-						<Card.Title className="color-orange">{title}</Card.Title>
-						<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
-						<Card.Subtitle className="mb-2 color-grey">
-							{url ? <a href={url} target="_blank" rel="noreferrer">Source</a> : 'No source'}
-						</Card.Subtitle>
-						<Card.Subtitle className="mb-2 color-grey">Comment count: {descendants}</Card.Subtitle>
-						{ text ?
-							<Card.Text as='span' className="bold color-dark-grey">
-								{parse(text)}
-							</Card.Text>
-							: <span className='bold color-dark-grey'>To read the text, visit the source</span>}
-					</Card.Body>
+					{
+						isStoryLoading ? <Spinner className="mt-20 mb-20" /> :
+							!isEmpty(story) ?
+								<Card.Body>
+									<Card.Title className="color-orange">{title}</Card.Title>
+									<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
+									<Card.Subtitle className="mb-2 color-grey">
+										{url ? <a href={url} target="_blank" rel="noreferrer">Source</a> : 'No source'}
+									</Card.Subtitle>
+									<Card.Subtitle className="mb-2 color-grey">Comment count: {descendants}</Card.Subtitle>
+									{ text ?
+										<Card.Text as='span' className="bold color-dark-grey">
+											{parse(text)}
+										</Card.Text>
+										: <span className='bold color-dark-grey'>To read the text, visit the source</span>}
+								</Card.Body>
+								: <h6>Some troubles in loading story</h6>
+					}
 				</Card>
 
 				<Button onClick={() => updateStoryAndComments(id)} variant="outline-success">Update comments</Button>
 
-				<div className='comments mt-20'>
+				<div className='comments mt-20 mb-20'>
 					{!isEmpty(comments) ? <h6 className='color-dark-grey'>Comments:</h6> : <h6 className='color-grey'>No comments found</h6>}
 
-					{!isEmpty(comments) && comments.map(({id, by, text, time, children, showChildComment}: Comment = {}) =>
-						<div className='comment-wrapper mt-20' key={id}>
-							{ by && <Card className='parent' border="primary">
-								<Card.Body>
-									<Card.Subtitle className="mb-2 color-grey"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
-									<Card.Text className="bold color-dark-grey" as='span'>
-										{text && parse(text)}
-									</Card.Text>
-									{ !isEmpty(children) &&
-										<Button onClick={() => changeVisibilityOfChildComment(id)} className="mt-20" variant="outline-secondary">+{children.length} answer{children.length > 1 && 's'}</Button>
-									}
-								</Card.Body>
-							</Card>
-							}
-
-
-							{ (!isEmpty(children) && showChildComment) && children.map(({id, by, text, time} = {}) =>
-								<Card key={id} className='child' border="success">
+					{ isCommentsLoading ? <Spinner className="mt-20" /> :
+						!isEmpty(comments) && comments.map(({id, by, text, time, children, showChildComment}: Comment = {}) =>
+							<div className='comment-wrapper mt-20' key={id}>
+								{ by && <Card className='parent' border="primary">
 									<Card.Body>
 										<Card.Subtitle className="mb-2 color-grey"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
 										<Card.Text className="bold color-dark-grey" as='span'>
 											{text && parse(text)}
 										</Card.Text>
+										{ !isEmpty(children) &&
+										<Button onClick={() => changeVisibilityOfChildComment(id)} className="mt-20" variant="outline-secondary">+{children.length} answer{children.length > 1 && 's'}</Button>
+										}
 									</Card.Body>
 								</Card>
-							)}
-						</div>
-					)}
+								}
+
+								{ (!isEmpty(children) && showChildComment) && children.map(({id, by, text, time} = {}) =>
+									<Card key={id} className='child' border="success">
+										<Card.Body>
+											<Card.Subtitle className="mb-2 color-grey"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
+											<Card.Text className="bold color-dark-grey" as='span'>
+												{text && parse(text)}
+											</Card.Text>
+										</Card.Body>
+									</Card>
+								)}
+							</div>
+						)}
 				</div>
 			</div>
 		</div>);
