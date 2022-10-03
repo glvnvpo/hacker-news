@@ -47,7 +47,8 @@
     "testMatch": [
       "**/__tests__/**/*.[jt]s?(x)",
       "**/?(*.)(spec|test).[jt]s?(x)"
-    ]
+    ],
+    "testEnvironment": "jsdom"
   },
   "browserslist": {
     "production": [
@@ -69,9 +70,13 @@
     "@babel/preset-flow": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@cfaester/enzyme-adapter-react-18": "^0.5.1",
+    "enzyme": "^3.11.0",
     "eslint": "8.22.0",
     "flow-bin": "^0.187.0",
     "jest": "^27.5.1",
+    "jsdom": "20.0.1",
+    "jsdom-global": "3.0.2",
     "sass": "^1.55.0",
     "typescript": "^4.8.3",
     "webpack": "^5.74.0"

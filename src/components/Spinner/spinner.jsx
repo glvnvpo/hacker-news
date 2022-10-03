@@ -1,7 +1,7 @@
 // @flow
 
 import React from "react";
-import {Spinner} from 'react-bootstrap';
+import {Spinner} from "react-bootstrap";
 
 type Props = {
 	variant?: string;
