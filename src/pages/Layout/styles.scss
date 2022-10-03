@@ -1,11 +1,14 @@
 @import "~bootstrap/scss/bootstrap";
+@import "../../style/variables";
 
 .layout {
-  background: #ff6600;
   padding: 10px;
   display: flex;
   justify-content: center;
-  h2 {
-    color: white;
+
+  @media screen and (max-width: $medium) {
+    h2 {
+      font-size: 1.5rem;
+    }
   }
 }

@@ -7,16 +7,27 @@
 
   .content {
     width: 50rem;
+    padding-right: 10px;
+    padding-left: 10px;
 
     .header {
       border-bottom: 2px solid $grey;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding-top: 20px;
-      padding-bottom: 30px;
+      padding-bottom: 20px;
       position: sticky;
       top: 0;
       z-index: 1;
+
+      h4 {
+        margin-bottom: 0;
+
+        @media screen and (max-width: $medium) {
+          font-size: 1.25rem;
+        }
+      }
     }
 
     .spinner-border {
@@ -39,6 +50,16 @@
 
           .card-subtitle {
             color: $grey3;
+          }
+        }
+
+        @media screen and (max-width: $medium) {
+          .card-title {
+            font-size: 1.15rem;
+          }
+
+          .card-subtitle {
+            font-size: 0.75rem;
           }
         }
       }
