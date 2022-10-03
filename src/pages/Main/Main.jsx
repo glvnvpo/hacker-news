@@ -1,9 +1,9 @@
 // @flow
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {Card, Button} from 'react-bootstrap';
+import {Card, Button, Spinner} from 'react-bootstrap';
 import axios from 'axios';
 import {isEmpty, isNull} from 'lodash';
 import './styles.scss';
@@ -28,6 +28,8 @@ export const Main = () => {
 
 	const stories = useSelector(state => state.stories.value);
 	const dispatch = useDispatch();
+
+	const [isLoading, setLoading] = useState(stories.length <= 0);
 
 	let location = useLocation();
 
@@ -55,9 +57,10 @@ export const Main = () => {
 							.filter(({status})=> status === 'fulfilled')
 							.map(({value}) => value)
 					)
-					.finally(() =>
-						dispatch(setStories(loadedStories))
-					);
+					.finally(() => {
+						dispatch(setStories(loadedStories));
+						setLoading(false);
+					});
 			})
 			.catch((err) => console.error(err));
 	};
@@ -79,19 +82,20 @@ export const Main = () => {
 				</div>
 
 				<div className='cards mt-10'>
-					{!isEmpty(stories) ? stories.map(({id, title, by, time, score}: Story)=>
-						<Card
-							key={id}
-							as={Link}
-							to={`${MAIN_PAGE_PATH}/${id}`}
-							className='mb-10'
-						>
-							<Card.Body>
-								<Card.Title className="color-orange">{title}</Card.Title>
-								<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
-							</Card.Body>
-						</Card>
-					) : 'EMPTY'}
+					{isLoading ? <Spinner animation="border" variant="secondary" className="mt-20" /> :
+						(!isEmpty(stories)) ? stories.map(({id, title, by, time, score}: Story)=>
+							<Card
+								key={id}
+								as={Link}
+								to={`${MAIN_PAGE_PATH}/${id}`}
+								className='mb-10'
+							>
+								<Card.Body>
+									<Card.Title className="color-orange">{title}</Card.Title>
+									<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
+								</Card.Body>
+							</Card>
+						) : <h5 className="mt-20">No stories found</h5>}
 				</div>
 
 			</div>
