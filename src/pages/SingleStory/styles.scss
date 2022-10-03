@@ -7,6 +7,11 @@
   .content {
     width: 50rem;
 
+    .spinner {
+      display: flex;
+      justify-content: center;
+    }
+
     .story {
       .card-subtitle {
         font-size: 15px;

@@ -35,7 +35,7 @@ export const Main = () => {
 
 	let timer;
 
-	useEffect(()=>{
+	useEffect(() => {
 		loadStoriesEachMinute();
 		return () => clearTimeout(timer);
 	}, [location?.pathname]);
@@ -45,7 +45,12 @@ export const Main = () => {
 		timer = setTimeout(loadStoriesEachMinute, MINUTE);
 	};
 
-	const loadNewStories = () => {
+	const loadNewStories = (event = undefined) => {
+
+		if (event) {
+			setLoading(true);
+		}
+
 		axios(NEW_STORIES())
 			.then(async ({data}) => {
 				const newestStories = [...data.slice(0, STORIES_NUMBER)];
@@ -78,7 +83,7 @@ export const Main = () => {
 			<div className='content'>
 				<div className='header bg-white'>
 					<h4 className="color-grey2">Latest news</h4>
-					<Button onClick={() => loadNewStories()} variant="outline-success">Update news</Button>
+					<Button onClick={(e) => loadNewStories(e)} variant="outline-success">Update news</Button>
 				</div>
 
 				<div className='cards mt-10'>
