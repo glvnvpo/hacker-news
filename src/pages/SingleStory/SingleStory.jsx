@@ -40,7 +40,7 @@ export const SingleStory = () => {
 	const [story, setStory] = useState({});
 	const [comments, setComments] = useState([]);
 	const [isStoryLoading, setStoryLoading] = useState(true);
-	const [isCommentsLoading, setCommentsLoading] = useState(false);
+	const [isCommentsLoading, setCommentsLoading] = useState(true);
 
 	const navigate = useNavigate();
 	let location = useLocation();
@@ -64,7 +64,11 @@ export const SingleStory = () => {
 		});
 	};
 
-	const updateStoryAndComments = (id: number | string) => {
+	const updateStoryAndComments = (id: number | string, event = undefined) => {
+		if (event) {
+			setCommentsLoading(true);
+		}
+
 		loadStory(id)
 			.then((data) => loadComments(data));
 	};
@@ -81,7 +85,6 @@ export const SingleStory = () => {
 	const loadComments = ({kids}: Story = {}) => {
 		if (kids && !isEmpty(kids)) {
 			const promises = kids.map(loadOneComment);
-			setCommentsLoading(true);
 			Promise.all(promises)
 				.then(loadedComments => {
 					const childrenPromises = loadedComments.map(loadChildrenComments);
@@ -89,6 +92,9 @@ export const SingleStory = () => {
 				})
 				.then((loadedComments) => setComments(loadedComments))
 				.finally(() => setCommentsLoading(false));
+		}
+		else {
+			setCommentsLoading(false);
 		}
 	};
 
@@ -156,12 +162,16 @@ export const SingleStory = () => {
 					}
 				</Card>
 
-				<Button onClick={() => updateStoryAndComments(id)} variant="outline-success">Update comments</Button>
+				<Button onClick={(e) => updateStoryAndComments(id, e)} variant="outline-success">Update comments</Button>
 
 				<div className='comments mt-20 mb-20'>
-					{!isEmpty(comments) ? <h6 className='color-dark-grey'>Comments:</h6> : <h6 className='color-grey'>No comments found</h6>}
 
-					{ isCommentsLoading ? <Spinner className="mt-20" /> :
+					{ !isCommentsLoading &&
+					(!isEmpty(comments) ? <h6 className='color-dark-grey'>Comments:</h6>
+						: <h6 className='color-grey'>No comments found</h6>)
+					}
+
+					{ (isCommentsLoading && !isStoryLoading) ? <Spinner className="mt-20" /> :
 						!isEmpty(comments) && comments.map(({id, by, text, time, children, showChildComment}: Comment = {}) =>
 							<div className='comment-wrapper mt-20' key={id}>
 								{ by && <Card className='parent' border="primary">
