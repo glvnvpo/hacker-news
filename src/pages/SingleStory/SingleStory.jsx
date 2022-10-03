@@ -5,7 +5,7 @@ import {useParams, useNavigate, useLocation} from "react-router-dom";
 import {Button, Card} from "react-bootstrap";
 import parse from 'html-react-parser';
 import axios from 'axios';
-import {isEmpty, isNull} from "lodash";
+import {isEmpty, isNull, isArray} from "lodash";
 import './styles.scss';
 import {ITEM} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
@@ -127,7 +127,7 @@ export const SingleStory = () => {
 		setComments(newComments);
 	};
 
-	let {title, score, by, time, url, descendants, text} = story || {};
+	let {title, score, by, time, url, kids, text} = story || {};
 
 	return (
 		<div className="single-story">
@@ -145,7 +145,7 @@ export const SingleStory = () => {
 									<Card.Subtitle className="mb-2 color-grey">
 										{url ? <a href={url} target="_blank" rel="noreferrer">Source</a> : 'No source'}
 									</Card.Subtitle>
-									<Card.Subtitle className="mb-2 color-grey">Comment count: {descendants}</Card.Subtitle>
+									<Card.Subtitle className="mb-2 color-grey">Comment count: {isArray(kids) ? kids.length : '0'}</Card.Subtitle>
 									{ text ?
 										<Card.Text as='span' className="bold color-dark-grey">
 											{parse(text)}
