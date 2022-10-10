@@ -1,26 +1,18 @@
 // @flow
 
 import React, {useEffect, useState} from 'react';
-import {Link, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {Card, Button, Spinner} from 'react-bootstrap';
+import {Button, Spinner} from 'react-bootstrap';
 import axios from 'axios';
-import {isEmpty, isNull} from 'lodash';
+import {isEmpty, isNull, pick} from 'lodash';
 import './styles.scss';
+import type {Story} from '../../types';
 import {setStories} from '../../store/stories';
 import {ITEM, NEW_STORIES} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
 import {MAIN_PAGE_PATH} from '../../routing/constants';
-import {getDateFromTimestamp} from "../../helpers/get-date-from-timestamp";
-
-type Story = {
-    id: number | string;
-    title: string;
-    by: string;
-    time: number | string;
-    score: number | string;
-	kids?: Array<number | string>;
-}
+import {StoryCard} from "../../components/StoryCard";
 
 const STORIES_NUMBER = 100;
 
@@ -32,6 +24,8 @@ export const Main = () => {
 	const [isLoading, setLoading] = useState(stories.length <= 0);
 
 	let location = useLocation();
+
+	const fieldsToShowInCard = ['id', 'title', 'by', 'time', 'score'];
 
 	let timer;
 
@@ -78,6 +72,10 @@ export const Main = () => {
 		});
 	};
 
+	const getFieldsToShowInCard = (fields, story) => {
+		return pick(story, fields);
+	};
+
 	return (
 		<div className="main">
 			<div className='content'>
@@ -88,19 +86,16 @@ export const Main = () => {
 
 				<div className='cards mt-10'>
 					{isLoading ? <Spinner animation="border" variant="secondary" className="mt-20" /> :
-						(!isEmpty(stories)) ? stories.map(({id, title, by, time, score}: Story)=>
-							<Card
-								key={id}
-								as={Link}
-								to={`${MAIN_PAGE_PATH}/${id}`}
-								className='mb-10'
-							>
-								<Card.Body>
-									<Card.Title className="color-orange">{title}</Card.Title>
-									<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
-								</Card.Body>
-							</Card>
-						) : <h5 className="mt-20">No stories found</h5>}
+						(!isEmpty(stories)) ? stories.map((story: Story) =>
+							<StoryCard
+								story={getFieldsToShowInCard(fieldsToShowInCard, story)}
+								key={story.id}
+								asLink
+								to={`${MAIN_PAGE_PATH}/${story.id}`}
+								fieldsToShow={fieldsToShowInCard}
+							/>
+						) : <h5 className="mt-20">No stories found</h5>
+					}
 				</div>
 
 			</div>

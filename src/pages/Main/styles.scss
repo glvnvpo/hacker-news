@@ -41,8 +41,8 @@
       align-items: center;
       margin-bottom: 50px;
 
-      .card {
-        width: 100%;
+      .story {
+        margin-bottom: 10px;
 
         &:hover {
           border-color: $orange;
@@ -50,16 +50,6 @@
 
           .card-subtitle {
             color: $grey3;
-          }
-        }
-
-        @media screen and (max-width: $medium) {
-          .card-title {
-            font-size: 1.15rem;
-          }
-
-          .card-subtitle {
-            font-size: 0.75rem;
           }
         }
       }
