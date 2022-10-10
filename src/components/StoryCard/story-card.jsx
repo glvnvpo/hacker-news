@@ -20,7 +20,7 @@ type Props = {
 
 export const StoryCard = ({isLoading=false, story, asLink=false, to, fieldsToShow=['all'], ...rest}: Props) => {
 
-	let {title, score, by, time, url, text, descendants} = story || {};
+	let {title, score, by, time, url, text, descendants} = story;
 
 	const shouldShowField = (key: string): boolean => {
 		if (fieldsToShow.includes("all")) {
