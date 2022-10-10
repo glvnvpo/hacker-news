@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/bootstrap";
+@import "../../style/variables";
+
+.comment {
+
+  &.parent {
+    width: 100%;
+  }
+
+  &.child {
+    margin-top: 5px;
+    width: 90%;
+  }
+
+  .card-text {
+    display: block;
+  }
+
+  @media screen and (max-width: $medium) {
+    .card-subtitle {
+      font-size: 0.85rem;
+    }
+  }
+}

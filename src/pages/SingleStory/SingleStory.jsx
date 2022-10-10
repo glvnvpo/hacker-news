@@ -2,8 +2,7 @@
 
 import React, {useState, useEffect}  from 'react';
 import {useParams, useNavigate, useLocation} from "react-router-dom";
-import {Button, Card} from "react-bootstrap";
-import parse from 'html-react-parser';
+import {Button} from "react-bootstrap";
 import axios from 'axios';
 import {isEmpty, isNull} from "lodash";
 import './styles.scss';
@@ -13,7 +12,8 @@ import {MINUTE} from "../../constants/time";
 import {MAIN_PAGE_PATH} from "../../routing/constants";
 import {Spinner} from "../../components/Spinner";
 import {StoryCard} from "../../components/StoryCard";
-import {getDateFromTimestamp} from "../../helpers/get-date-from-timestamp";
+import {CommentCard} from "../../components/CommentCard";
+import {ChildComment} from "../../types";
 
 type Comment = {
 	id: number | string;
@@ -120,7 +120,7 @@ export const SingleStory = () => {
 				{...parentComment, showChildComment: newVisibility}
 				: comment
 		);
-		
+
 		setComments(newComments);
 	};
 
@@ -142,30 +142,21 @@ export const SingleStory = () => {
 					}
 
 					{ (isCommentsLoading && !isStoryLoading) ? <Spinner className="mt-20" /> :
-						!isEmpty(comments) && comments.map(({id, by, text, time, children, showChildComment}: Comment = {}) =>
-							<div className='comment-wrapper mt-20' key={id}>
-								{ by && <Card className='parent' border="primary">
-									<Card.Body>
-										<Card.Subtitle className="mb-2 color-grey"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
-										<Card.Text className="bold color-dark-grey" as='span'>
-											{text && parse(text)}
-										</Card.Text>
-										{ !isEmpty(children) &&
-										<Button onClick={() => changeVisibilityOfChildComment(id)} className="mt-20" variant="outline-secondary">+{children.length} answer{children.length > 1 && 's'}</Button>
-										}
-									</Card.Body>
-								</Card>
+						!isEmpty(comments) && comments.map((comment: Comment = {}) =>
+							<div className='comment-wrapper mt-20' key={comment.id}>
+								{ comment.by &&
+									<CommentCard
+										comment={comment}
+										onChangeVisibilityOfChildComment={changeVisibilityOfChildComment}
+									/>
 								}
 
-								{ (!isEmpty(children) && showChildComment) && children.map(({id, by, text, time} = {}) =>
-									<Card key={id} className='child' border="success">
-										<Card.Body>
-											<Card.Subtitle className="mb-2 color-grey"><span className="bold">{by}</span> | {getDateFromTimestamp(time)}</Card.Subtitle>
-											<Card.Text className="bold color-dark-grey" as='span'>
-												{text && parse(text)}
-											</Card.Text>
-										</Card.Body>
-									</Card>
+								{ (!isEmpty(comment.children) && comment.showChildComment) && comment.children.map((childComment: ChildComment) =>
+									<CommentCard
+										comment={childComment}
+										parent={false}
+										key={childComment.id}
+									/>
 								)}
 							</div>
 						)}
