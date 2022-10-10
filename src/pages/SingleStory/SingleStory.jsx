@@ -7,22 +7,13 @@ import parse from 'html-react-parser';
 import axios from 'axios';
 import {isEmpty, isNull} from "lodash";
 import './styles.scss';
+import type {Story} from '../../types';
 import {ITEM} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
 import {MAIN_PAGE_PATH} from "../../routing/constants";
 import {Spinner} from "../../components/Spinner";
+import {StoryCard} from "../../components/StoryCard";
 import {getDateFromTimestamp} from "../../helpers/get-date-from-timestamp";
-
-type Story = {
-	id: number | string;
-	title: string;
-	by: string;
-	time: number | string;
-	score: number | string;
-	kids?: Array<number | string>;
-	text?: string;
-	descendants?: number | string;
-}
 
 type Comment = {
 	id: number | string;
@@ -133,34 +124,13 @@ export const SingleStory = () => {
 		setComments(newComments);
 	};
 
-	let {title, score, by, time, url, descendants, text} = story || {};
-
 	return (
 		<div className="single-story">
 			<div className='content'>
 
 				<Button className="mt-20 mb-10" onClick={() => goBackToStories()} variant="outline-primary">Go back to news</Button>
 
-				<Card className='story mt-10 mb-20 border-orange'>
-					{
-						isStoryLoading ? <Spinner className="mt-20 mb-20" /> :
-							!isEmpty(story) ?
-								<Card.Body>
-									<Card.Title className="color-orange">{title}</Card.Title>
-									<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
-									<Card.Subtitle className="mb-2 color-grey">
-										{url ? <a href={url} target="_blank" rel="noreferrer">Source</a> : 'No source'}
-									</Card.Subtitle>
-									<Card.Subtitle className="mb-2 color-grey">Comment count: {descendants}</Card.Subtitle>
-									{ text ?
-										<Card.Text as='span' className="bold color-dark-grey">
-											{parse(text)}
-										</Card.Text>
-										: <span className='bold color-dark-grey'>To read the text, visit the source</span>}
-								</Card.Body>
-								: <h6>Some troubles in loading story</h6>
-					}
-				</Card>
+				<StoryCard isLoading={isStoryLoading} story={story} />
 
 				<Button onClick={(e) => updateStoryAndComments(id, e)} variant="outline-success">Update comments</Button>
 

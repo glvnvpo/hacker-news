@@ -16,24 +16,7 @@
     }
 
     .story {
-      .card-subtitle {
-        font-size: 15px;
-      }
-
-      .card-text {
-        margin-top: 30px;
-        font-size: 17px;
-      }
-
-      @media screen and (max-width: $medium) {
-        .card-title {
-          font-size: 1.15rem;
-        }
-
-        .card-subtitle {
-          font-size: 0.75rem;
-        }
-      }
+      border-color: $orange;
     }
 
     .comments {
