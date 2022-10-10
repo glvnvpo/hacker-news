@@ -26,25 +26,6 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-
-        .card-text {
-          display: block;
-        }
-
-        .parent {
-          width: 100%;
-        }
-
-        .child {
-          margin-top: 5px;
-          width: 90%;
-        }
-
-        @media screen and (max-width: $medium) {
-          .card-subtitle {
-            font-size: 0.85rem;
-          }
-        }
       }
     }
   }
