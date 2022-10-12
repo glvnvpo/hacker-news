@@ -44,13 +44,16 @@ export const SingleStory = () => {
 	}, [location?.pathname]);
 
 	const loadStory = (id: number | string): Promise<Story | string> => {
-		return new Promise((resolve) => {
+		return new Promise((resolve, reject) => {
 			axios(ITEM(id))
 				.then(({data}) => {
-					setStory(data);
-					resolve(data);
+					if (data) {
+						setStory(data);
+						resolve(data);
+					}
+					else reject('No data');
 				})
-				.catch((err) => console.error(err))
+				.catch((err) => reject(err))
 				.finally(() => setStoryLoading(false));
 		});
 	};
@@ -61,7 +64,8 @@ export const SingleStory = () => {
 		}
 
 		loadStory(id)
-			.then((data) => loadComments(data));
+			.then((data) => loadComments(data))
+			.catch(() => setCommentsLoading(false));
 	};
 
 	const updateStoryAndCommentsEachMinute = (id: number | string) => {
