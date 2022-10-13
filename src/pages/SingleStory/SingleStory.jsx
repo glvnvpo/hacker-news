@@ -51,7 +51,10 @@ export const SingleStory = () => {
 						setStory(data);
 						resolve(data);
 					}
-					else reject('No data');
+					else {
+						setStory({});
+						reject('No data');
+					}
 				})
 				.catch((err) => reject(err))
 				.finally(() => setStoryLoading(false));
@@ -136,11 +139,14 @@ export const SingleStory = () => {
 
 				<StoryCard isLoading={isStoryLoading} story={story} />
 
-				<Button onClick={(e) => updateStoryAndComments(id, e)} variant="outline-success">Update comments</Button>
+				{
+					!isEmpty(story) &&
+					<Button onClick={(e) => updateStoryAndComments(id, e)} variant="outline-success">Update comments</Button>
+				}
 
 				<div className='comments mt-20 mb-20'>
 
-					{ !isCommentsLoading &&
+					{ (!isEmpty(story) && !isCommentsLoading) &&
 					(!isEmpty(comments) ? <h6 className='color-dark-grey'>Comments:</h6>
 						: <h6 className='color-grey'>No comments found</h6>)
 					}
