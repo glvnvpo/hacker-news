@@ -83,8 +83,12 @@ export const SingleStory = () => {
 	const loadComments = ({kids}: Story = {}) => {
 		if (kids && !isEmpty(kids)) {
 			const promises = kids.map(loadOneComment);
-			Promise.all(promises)
-				.then(loadedComments => {
+
+			Promise.allSettled(promises)
+				.then(data => {
+					const loadedComments = data
+						.filter(({status})=> status === 'fulfilled')
+						.map(({value}) => value);
 					const childrenPromises = loadedComments.map(loadChildrenComments);
 					return Promise.all(childrenPromises);
 				})
@@ -102,10 +106,16 @@ export const SingleStory = () => {
 		return new Promise((resolve) => {
 			if (id && kids && !isEmpty(kids)) {
 				const promises = kids.map(loadOneComment);
-				Promise.all(promises)
-					.then(childrenComm =>
-						resolve({...comment, children: childrenComm, showChildComment: false})
-					);
+				Promise.allSettled(promises)
+					.then(data => {
+						const loadedChildrenComments = data
+							.filter(({status}) => status === 'fulfilled')
+							.map(({value}) => value);
+						resolve({...comment,
+							showChildComment: false,
+							children: loadedChildrenComments
+						});
+					});
 			}
 			else resolve(comment);
 		});
@@ -114,7 +124,7 @@ export const SingleStory = () => {
 	const loadOneComment = (id: string | number): Promise<Comment | string> => {
 		return new Promise((resolve, reject) => {
 			axios(ITEM(id))
-				.then(({data}) => !isNull(data) && resolve(data))
+				.then(({data}) => !isNull(data) ? resolve(data) : reject('No data'))
 				.catch(err => reject(err));
 		});
 	};
