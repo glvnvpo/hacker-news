@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {BrowserRouter} from "react-router-dom";
-import {StoryCard} from "../story-card";
+import {StoryCard} from "../index";
 import {MAIN_PAGE_PATH} from "../../../routing/constants";
 
 describe('StoryCard', () => {
