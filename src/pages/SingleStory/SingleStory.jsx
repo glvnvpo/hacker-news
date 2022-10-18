@@ -6,24 +6,13 @@ import {Button} from "react-bootstrap";
 import axios from 'axios';
 import {isEmpty, isNull} from "lodash";
 import './styles.scss';
-import type {Story} from '../../types';
+import type {Story, Comment, ChildComment} from '../../types';
 import {ITEM} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
 import {MAIN_PAGE_PATH} from "../../routing/constants";
 import {Spinner} from "../../components/Spinner";
 import {StoryCard} from "../../components/StoryCard";
 import {CommentCard} from "../../components/CommentCard";
-import {ChildComment} from "../../types";
-
-type Comment = {
-	id: number | string;
-	by: string;
-	text: string;
-	time: number | string;
-	kids?: Array<number | string>;
-	children?: Array<Comment>;
-	showChildComment?: boolean;
-}
 
 export const SingleStory = () => {
 	const {id} = useParams();
@@ -92,7 +81,20 @@ export const SingleStory = () => {
 					const childrenPromises = loadedComments.map(loadChildrenComments);
 					return Promise.all(childrenPromises);
 				})
-				.then((loadedComments) => setComments(loadedComments))
+				.then((loadedComments) => {
+					setComments(prevComments => {
+						if (!isEmpty(prevComments)) {
+							return loadedComments.map(comment => {
+								const existingComment = prevComments.find(el => el.id === comment.id);
+								return {
+									...comment,
+									showChildComment: existingComment ? existingComment.showChildComment : false
+								};
+							});
+						}
+						else return loadedComments;
+					});
+				})
 				.finally(() => setCommentsLoading(false));
 		}
 		else {
@@ -111,8 +113,8 @@ export const SingleStory = () => {
 						const loadedChildrenComments = data
 							.filter(({status}) => status === 'fulfilled')
 							.map(({value}) => value);
+
 						resolve({...comment,
-							showChildComment: false,
 							children: loadedChildrenComments
 						});
 					});
@@ -129,16 +131,16 @@ export const SingleStory = () => {
 		});
 	};
 
-	const changeVisibilityOfChildComment = (parentId: number | string) => {
-		const parentComment = comments.filter(({id}) => parentId === id)[0];
-		const newVisibility = !parentComment.showChildComment;
-		const newComments = comments.map(
-			(comment) => comment.id === parentId ?
-				{...parentComment, showChildComment: newVisibility}
-				: comment
-		);
-
-		setComments(newComments);
+	const changeVisibilityOfChildComment = (parentId: number | string): Array<Comment> => {
+		setComments(prevComments => {
+			const parentComment = prevComments.find(({id}) => parentId === id);
+			const newVisibility = !parentComment.showChildComment;
+			return prevComments.map(
+				comment => comment.id === parentId ?
+					{...parentComment, showChildComment: newVisibility}
+					: comment
+			);
+		});
 	};
 
 	return (
