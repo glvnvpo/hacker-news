@@ -23,9 +23,19 @@
       margin-bottom: 50px;
 
       .comment-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+
+        .parent {
+
+          .btn {
+            width: 130px;
+            height: 38px;
+            border-color: $grey;
+          }
+        }
+
+        .child {
+          border: none;
+        }
       }
     }
   }

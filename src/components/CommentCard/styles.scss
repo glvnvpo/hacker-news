@@ -9,7 +9,18 @@
 
   &.child {
     margin-top: 5px;
+    margin-left: 10px;
     width: 90%;
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .card-subtitle, .card-text {
+        width: 100%;
+      }
+    }
   }
 
   .card-text {

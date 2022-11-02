@@ -1,7 +1,8 @@
 // @flow
+export type ID = number | string;
 
 export type Story = {
-    id: number | string;
+    id: ID;
     title: string;
     by: string;
     time: number | string;
@@ -12,19 +13,15 @@ export type Story = {
     descendants?: number | string;
 }
 
-export type ChildComment = {
-    id: number | string;
-    by: string;
-    text: string;
-    time: number | string;
-}
-
 export type Comment = {
-    id: number | string;
+    id: ID;
     by: string;
     text: string;
     time: number | string;
+    deleted?: boolean;
+    dead?: boolean;
     kids?: Array<number | string>;
-    children?: Array<ChildComment>;
+    children?: Array<Comment>;
     showChildComment?: boolean;
+    isLoadingChildren?: boolean;
 }
