@@ -1,6 +1,6 @@
 // @flow
 
-import React from "react";
+import React, {ReactNode} from "react";
 import {Button, Card} from "react-bootstrap";
 import {isEmpty} from "lodash";
 import parse from "html-react-parser";
@@ -12,13 +12,13 @@ import {getDateFromTimestamp} from "../../helpers/get-date-from-timestamp";
 type Props = {
 	comment: Comment;
     isParent?: boolean;
-	showAnswers?: () => void;
+	showAnswers?: (parentComment: Comment) => void;
 	children?: ReactNode;
 }
 
 export const CommentCard = ({isParent=true, comment, showAnswers, children, ...rest}: Props) => {
 
-	let {by, time, kids, isLoadingChildren, showChildComment} = comment;
+	let {by, time, deleted, dead, kids, isLoadingChildren, showChildComment} = comment;
 	
 	const getBtnText = (isOpen: boolean) => {
 		if (isOpen) {
@@ -27,7 +27,7 @@ export const CommentCard = ({isParent=true, comment, showAnswers, children, ...r
 		else return 'Show answers';
 	};
 
-	const getContent = (comment: CommentType) => {
+	const getContent = (comment: Comment) => {
 		const {text, deleted, dead} = comment;
 
 		if (deleted) {
@@ -41,14 +41,16 @@ export const CommentCard = ({isParent=true, comment, showAnswers, children, ...r
 		return parse(text);
 	};
 
+	let classes = `${isParent ? "parent" : "child"} ${deleted ? 'deleted' : ''} ${dead ? 'dead' : ''}`;
+
 	return (
 		<Card
-			className={`comment ${isParent ? "parent" : "child"}`}
+			className={`comment ${classes}`}
 			border={isParent && "primary"}
 			{...rest}>
 			<Card.Body>
 				<Card.Subtitle className="mb-2 color-grey">
-					<span className="bold">{by}</span>{ by && ' | '}{getDateFromTimestamp(time)}
+					<span className="bold">{by}</span>{ by && '\u00A0|\u00A0'}{getDateFromTimestamp(time)}
 				</Card.Subtitle>
 				<Card.Text className="bold color-dark-grey" as='span'>
 					{getContent(comment)}

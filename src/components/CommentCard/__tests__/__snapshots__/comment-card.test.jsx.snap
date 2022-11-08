@@ -19,10 +19,10 @@ exports[`CommentCard should render correct card 1`] = `
   <Card
     body={false}
     border="primary"
-    className="comment parent"
+    className="comment parent  "
   >
     <div
-      className="comment parent card border-primary"
+      className="comment parent   card border-primary"
     >
       <CardBody>
         <div
@@ -42,7 +42,7 @@ exports[`CommentCard should render correct card 1`] = `
                 >
                   coolUser
                 </span>
-                 | 
+                 | 
                 25.10.2022
               </div>
             </ForwardRef>
@@ -88,10 +88,10 @@ exports[`CommentCard should render correct card 1`] = `
             <Card
               body={false}
               border={false}
-              className="comment child"
+              className="comment child  "
             >
               <div
-                className="comment child card"
+                className="comment child   card"
               >
                 <CardBody>
                   <div
@@ -111,7 +111,7 @@ exports[`CommentCard should render correct card 1`] = `
                           >
                             coolUser124
                           </span>
-                           | 
+                           | 
                           25.10.2022
                         </div>
                       </ForwardRef>
