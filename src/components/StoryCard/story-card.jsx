@@ -52,7 +52,7 @@ export const StoryCard = ({isLoading=false, story, asLink=false, to, fieldsToSho
 
 							{
 								shouldShowField("descendants") &&
-								<Card.Subtitle className="mb-2 color-grey">Comment count: {descendants}</Card.Subtitle>
+								<Card.Subtitle className="mb-2 color-grey">Comments count: {descendants}</Card.Subtitle>
 							}
 
 							{
