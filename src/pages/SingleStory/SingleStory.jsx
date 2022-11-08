@@ -14,12 +14,16 @@ import {Spinner} from "../../components/Spinner";
 import {StoryCard} from "../../components/StoryCard";
 import {CommentCard} from "../../components/CommentCard";
 
+type childrenCommentsToSave = {
+	[key: ID]: Comment
+}
+
 export const SingleStory = () => {
 	const {id} = useParams();
 
-	const [story, setStory] = useState({});
-	const [comments, setComments] = useState([]);
-	const [childrenComments, setChildrenComments] = useState({});
+	const [story, setStory] = useState<Story>({});
+	const [comments, setComments] = useState<Comment[]>([]);
+	const [childrenComments, setChildrenComments] = useState<childrenCommentsToSave>({});
 	const [isStoryLoading, setStoryLoading] = useState(true);
 	const [isCommentsLoading, setCommentsLoading] = useState(true);
 
@@ -33,9 +37,9 @@ export const SingleStory = () => {
 		return () => clearTimeout(timer);
 	}, [location?.pathname]);
 
-	const loadStory = (id: ID): Promise<Story | string> => {
+	const loadStory = (id: ID): Promise<Story> => {
 		return new Promise((resolve, reject) => {
-			axios(ITEM(id))
+			axios<Story>(ITEM(id))
 				.then(({data}) => {
 					if (data) {
 						setStory(data);
@@ -135,9 +139,9 @@ export const SingleStory = () => {
 		});
 	};
 
-	const loadOneComment = (id: ID): Promise<Comment | string> => {
+	const loadOneComment = (id: ID): Promise<Comment> => {
 		return new Promise((resolve, reject) => {
-			axios(ITEM(id))
+			axios<Comment>(ITEM(id))
 				.then(({data}) => !isNull(data) ? resolve(data) : reject('No data'))
 				.catch(err => reject(err));
 		});

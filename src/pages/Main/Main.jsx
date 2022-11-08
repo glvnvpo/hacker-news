@@ -37,7 +37,7 @@ export const Main = () => {
 		timer = setTimeout(loadStoriesEachMinute, MINUTE);
 	};
 
-	const loadNewStories = (event = undefined) => {
+	const loadNewStories = (event? = undefined) => {
 
 		if (event) {
 			setLoading(true);
