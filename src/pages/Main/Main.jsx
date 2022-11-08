@@ -5,9 +5,9 @@ import {useLocation} from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
 import {Button, Spinner} from 'react-bootstrap';
 import axios from 'axios';
-import {isEmpty, isNull, pick} from 'lodash';
+import {isEmpty, isNull} from 'lodash';
 import './styles.scss';
-import type {Story} from '../../types';
+import type {Story, ID} from '../../types';
 import {setStories} from '../../store/stories';
 import {ITEM, NEW_STORIES} from "../../api/constants";
 import {MINUTE} from "../../constants/time";
@@ -24,8 +24,6 @@ export const Main = () => {
 	const [isLoading, setLoading] = useState(stories.length <= 0);
 
 	let location = useLocation();
-
-	const fieldsToShowInCard = ['id', 'title', 'by', 'time', 'score'];
 
 	let timer;
 
@@ -45,11 +43,12 @@ export const Main = () => {
 			setLoading(true);
 		}
 
-		axios(NEW_STORIES())
+		axios<ID[]>(NEW_STORIES())
 			.then(async ({data}) => {
 				const newestStories = [...data.slice(0, STORIES_NUMBER)];
 				let loadedStories = [];
 				const promises = newestStories.map(loadOneStory);
+
 				await Promise.allSettled(promises)
 					.then(data =>
 						loadedStories = data
@@ -61,19 +60,15 @@ export const Main = () => {
 						setLoading(false);
 					});
 			})
-			.catch((err) => console.error(err));
+			.catch(() => setLoading(false));
 	};
 
-	const loadOneStory = (id: string | number) => {
+	const loadOneStory = (id: ID) => {
 		return new Promise((resolve, reject)=> {
-			axios(ITEM(id))
+			axios<Story>(ITEM(id))
 				.then(({data}) => !isNull(data) ? resolve(data) : reject())
 				.catch(err => reject(err));
 		});
-	};
-
-	const getFieldsToShowInCard = (fields, story) => {
-		return pick(story, fields);
 	};
 
 	return (
@@ -88,13 +83,13 @@ export const Main = () => {
 					{isLoading ? <Spinner animation="border" variant="secondary" className="mt-20" /> :
 						(!isEmpty(stories)) ? stories.map((story: Story) =>
 							<StoryCard
-								story={getFieldsToShowInCard(fieldsToShowInCard, story)}
+								story={story}
 								key={story.id}
 								asLink
 								to={`${MAIN_PAGE_PATH}/${story.id}`}
-								fieldsToShow={fieldsToShowInCard}
+								fieldsToShow={['descendants']}
 							/>
-						) : <h5 className="mt-20">No stories found</h5>
+						) : <h5 className="mt-20">No stories found :(</h5>
 					}
 				</div>
 
