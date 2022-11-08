@@ -42,11 +42,11 @@ export const StoryCard = ({isLoading=false, story, asLink=false, to, fieldsToSho
 					!isEmpty(story) ?
 						<Card.Body>
 							<Card.Title className="color-orange">{title}</Card.Title>
-							<Card.Subtitle className="mb-2 color-grey">{score} points | {by} | {getDateFromTimestamp(time)}</Card.Subtitle>
+							<Card.Subtitle className="mb-2 color-grey">{score}&nbsp;points&nbsp;| {by}&nbsp;| {getDateFromTimestamp(time)}</Card.Subtitle>
 							{
 								shouldShowField("url") &&
 								<Card.Subtitle className="mb-2 color-grey">
-									{url ? <a href={url} target="_blank" rel="noreferrer">Source</a> : 'No source'}
+									{url ? <a href={url} target="_blank" rel="noreferrer">Source</a> : 'No source link available'}
 								</Card.Subtitle>
 							}
 

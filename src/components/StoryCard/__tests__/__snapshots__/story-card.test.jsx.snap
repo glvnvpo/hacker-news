@@ -100,9 +100,9 @@ exports[`StoryCard should render correct StoryCard 1`] = `
                       className="mb-2 color-grey card-subtitle h6"
                     >
                       2
-                       points | 
+                       points | 
                       someUser
-                       | 
+                       | 
                       08.09.2022
                     </div>
                   </ForwardRef>
@@ -167,9 +167,9 @@ exports[`StoryCard should render correct StoryCard with all props 1`] = `
                 className="mb-2 color-grey card-subtitle h6"
               >
                 2
-                 points | 
+                 points | 
                 someUser
-                 | 
+                 | 
                 08.09.2022
               </div>
             </ForwardRef>
