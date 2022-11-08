@@ -23,6 +23,13 @@
     }
   }
 
+  &.deleted, &.dead {
+
+    .card-text {
+      color: $grey;
+    }
+  }
+
   .card-text {
     display: block;
 
