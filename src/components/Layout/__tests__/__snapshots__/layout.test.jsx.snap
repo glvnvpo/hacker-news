@@ -1,0 +1,328 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout should render correct layout 1`] = `
+<BrowserRouter>
+  <Router
+    location={
+      Object {
+        "hash": "",
+        "key": "default",
+        "pathname": "/",
+        "search": "",
+        "state": null,
+      }
+    }
+    navigationType="POP"
+    navigator={
+      Object {
+        "action": "POP",
+        "createHref": [Function],
+        "go": [Function],
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Routes>
+      <RenderedRoute
+        match={
+          Object {
+            "params": Object {
+              "*": "",
+            },
+            "pathname": "/",
+            "pathnameBase": "/",
+            "route": Object {
+              "action": undefined,
+              "caseSensitive": undefined,
+              "children": Array [
+                Object {
+                  "action": undefined,
+                  "caseSensitive": undefined,
+                  "element": <div>
+                    test
+                  </div>,
+                  "errorElement": undefined,
+                  "handle": undefined,
+                  "hasErrorBoundary": false,
+                  "id": "0-0",
+                  "index": undefined,
+                  "loader": undefined,
+                  "path": "*",
+                  "shouldRevalidate": undefined,
+                },
+              ],
+              "element": <Layout />,
+              "errorElement": undefined,
+              "handle": undefined,
+              "hasErrorBoundary": false,
+              "id": "0",
+              "index": undefined,
+              "loader": undefined,
+              "path": undefined,
+              "shouldRevalidate": undefined,
+            },
+          }
+        }
+        routeContext={
+          Object {
+            "matches": Array [
+              Object {
+                "params": Object {
+                  "*": "",
+                },
+                "pathname": "/",
+                "pathnameBase": "/",
+                "route": Object {
+                  "action": undefined,
+                  "caseSensitive": undefined,
+                  "children": Array [
+                    Object {
+                      "action": undefined,
+                      "caseSensitive": undefined,
+                      "element": <div>
+                        test
+                      </div>,
+                      "errorElement": undefined,
+                      "handle": undefined,
+                      "hasErrorBoundary": false,
+                      "id": "0-0",
+                      "index": undefined,
+                      "loader": undefined,
+                      "path": "*",
+                      "shouldRevalidate": undefined,
+                    },
+                  ],
+                  "element": <Layout />,
+                  "errorElement": undefined,
+                  "handle": undefined,
+                  "hasErrorBoundary": false,
+                  "id": "0",
+                  "index": undefined,
+                  "loader": undefined,
+                  "path": undefined,
+                  "shouldRevalidate": undefined,
+                },
+              },
+            ],
+            "outlet": <RenderedRoute
+              match={
+                Object {
+                  "params": Object {
+                    "*": "",
+                  },
+                  "pathname": "/",
+                  "pathnameBase": "/",
+                  "route": Object {
+                    "action": undefined,
+                    "caseSensitive": undefined,
+                    "element": <div>
+                      test
+                    </div>,
+                    "errorElement": undefined,
+                    "handle": undefined,
+                    "hasErrorBoundary": false,
+                    "id": "0-0",
+                    "index": undefined,
+                    "loader": undefined,
+                    "path": "*",
+                    "shouldRevalidate": undefined,
+                  },
+                }
+              }
+              routeContext={
+                Object {
+                  "matches": Array [
+                    Object {
+                      "params": Object {
+                        "*": "",
+                      },
+                      "pathname": "/",
+                      "pathnameBase": "/",
+                      "route": Object {
+                        "action": undefined,
+                        "caseSensitive": undefined,
+                        "children": Array [
+                          Object {
+                            "action": undefined,
+                            "caseSensitive": undefined,
+                            "element": <div>
+                              test
+                            </div>,
+                            "errorElement": undefined,
+                            "handle": undefined,
+                            "hasErrorBoundary": false,
+                            "id": "0-0",
+                            "index": undefined,
+                            "loader": undefined,
+                            "path": "*",
+                            "shouldRevalidate": undefined,
+                          },
+                        ],
+                        "element": <Layout />,
+                        "errorElement": undefined,
+                        "handle": undefined,
+                        "hasErrorBoundary": false,
+                        "id": "0",
+                        "index": undefined,
+                        "loader": undefined,
+                        "path": undefined,
+                        "shouldRevalidate": undefined,
+                      },
+                    },
+                    Object {
+                      "params": Object {
+                        "*": "",
+                      },
+                      "pathname": "/",
+                      "pathnameBase": "/",
+                      "route": Object {
+                        "action": undefined,
+                        "caseSensitive": undefined,
+                        "element": <div>
+                          test
+                        </div>,
+                        "errorElement": undefined,
+                        "handle": undefined,
+                        "hasErrorBoundary": false,
+                        "id": "0-0",
+                        "index": undefined,
+                        "loader": undefined,
+                        "path": "*",
+                        "shouldRevalidate": undefined,
+                      },
+                    },
+                  ],
+                  "outlet": null,
+                }
+              }
+            >
+              <div>
+                test
+              </div>
+            </RenderedRoute>,
+          }
+        }
+      >
+        <Layout>
+          <div
+            className="layout bg-orange"
+          >
+            <h2
+              className="color-white"
+            >
+              HACKER NEWS
+            </h2>
+          </div>
+          <Outlet>
+            <RenderedRoute
+              match={
+                Object {
+                  "params": Object {
+                    "*": "",
+                  },
+                  "pathname": "/",
+                  "pathnameBase": "/",
+                  "route": Object {
+                    "action": undefined,
+                    "caseSensitive": undefined,
+                    "element": <div>
+                      test
+                    </div>,
+                    "errorElement": undefined,
+                    "handle": undefined,
+                    "hasErrorBoundary": false,
+                    "id": "0-0",
+                    "index": undefined,
+                    "loader": undefined,
+                    "path": "*",
+                    "shouldRevalidate": undefined,
+                  },
+                }
+              }
+              routeContext={
+                Object {
+                  "matches": Array [
+                    Object {
+                      "params": Object {
+                        "*": "",
+                      },
+                      "pathname": "/",
+                      "pathnameBase": "/",
+                      "route": Object {
+                        "action": undefined,
+                        "caseSensitive": undefined,
+                        "children": Array [
+                          Object {
+                            "action": undefined,
+                            "caseSensitive": undefined,
+                            "element": <div>
+                              test
+                            </div>,
+                            "errorElement": undefined,
+                            "handle": undefined,
+                            "hasErrorBoundary": false,
+                            "id": "0-0",
+                            "index": undefined,
+                            "loader": undefined,
+                            "path": "*",
+                            "shouldRevalidate": undefined,
+                          },
+                        ],
+                        "element": <Layout />,
+                        "errorElement": undefined,
+                        "handle": undefined,
+                        "hasErrorBoundary": false,
+                        "id": "0",
+                        "index": undefined,
+                        "loader": undefined,
+                        "path": undefined,
+                        "shouldRevalidate": undefined,
+                      },
+                    },
+                    Object {
+                      "params": Object {
+                        "*": "",
+                      },
+                      "pathname": "/",
+                      "pathnameBase": "/",
+                      "route": Object {
+                        "action": undefined,
+                        "caseSensitive": undefined,
+                        "element": <div>
+                          test
+                        </div>,
+                        "errorElement": undefined,
+                        "handle": undefined,
+                        "hasErrorBoundary": false,
+                        "id": "0-0",
+                        "index": undefined,
+                        "loader": undefined,
+                        "path": "*",
+                        "shouldRevalidate": undefined,
+                      },
+                    },
+                  ],
+                  "outlet": null,
+                }
+              }
+            >
+              <div>
+                test
+              </div>
+            </RenderedRoute>
+          </Outlet>
+        </Layout>
+      </RenderedRoute>
+    </Routes>
+  </Router>
+</BrowserRouter>
+`;

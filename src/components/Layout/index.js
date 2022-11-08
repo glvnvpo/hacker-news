@@ -1,3 +1,3 @@
 // @flow
 
-export {Layout} from './Layout';
+export {Layout} from './layout';
