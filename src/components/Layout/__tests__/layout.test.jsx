@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {Layout} from '../layout';
 
 describe('Layout', () => {

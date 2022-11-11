@@ -8,7 +8,7 @@ export const Layout = () => {
 	return (
 		<>
 			<div className='layout bg-orange'>
-				<h2 className="color-white">HACKER NEWS</h2>
+				<h2 className='color-white'>HACKER NEWS</h2>
 			</div>
 			<Outlet/>
 		</>

@@ -1,14 +1,14 @@
 // @flow
 
-import React from "react";
-import {Link} from "react-router-dom";
-import {Card} from "react-bootstrap";
-import {isEmpty} from "lodash";
-import parse from "html-react-parser";
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {Card} from 'react-bootstrap';
+import {isEmpty} from 'lodash';
+import parse from 'html-react-parser';
 import './styles.scss';
-import {Spinner} from "../Spinner";
+import {Spinner} from '../Spinner';
 import type {Story} from '../../types';
-import {getDateFromTimestamp} from "../../helpers/get-date-from-timestamp";
+import {getDateFromTimestamp} from '../../helpers/get-date-from-timestamp';
 
 type Props = {
     story: Story;
@@ -23,7 +23,7 @@ export const StoryCard = ({isLoading=false, story, asLink=false, to, fieldsToSho
 	let {title, score, by, time, url, text, descendants} = story;
 
 	const shouldShowField = (key: string): boolean => {
-		if (fieldsToShow.includes("all")) {
+		if (fieldsToShow.includes('all')) {
 			return true;
 		}
 
@@ -38,33 +38,33 @@ export const StoryCard = ({isLoading=false, story, asLink=false, to, fieldsToSho
 			{...rest}
 		>
 			{
-				isLoading ? <Spinner className="mt-20 mb-20" /> :
+				isLoading ? <Spinner className='mt-20 mb-20' /> :
 					!isEmpty(story) ?
 						<Card.Body>
-							<Card.Title className="color-orange">{title}</Card.Title>
-							<Card.Subtitle className="mb-2 color-grey">{score}&nbsp;points&nbsp;| {by}&nbsp;| {getDateFromTimestamp(time)}</Card.Subtitle>
+							<Card.Title className='color-orange'>{title}</Card.Title>
+							<Card.Subtitle className='mb-2 color-grey'>{score}&nbsp;points&nbsp;| {by}&nbsp;| {getDateFromTimestamp(time)}</Card.Subtitle>
 							{
-								shouldShowField("url") &&
-								<Card.Subtitle className="mb-2 color-grey">
-									{url ? <a href={url} target="_blank" rel="noreferrer">Source</a> : 'No source link available'}
+								shouldShowField('url') &&
+								<Card.Subtitle className='mb-2 color-grey'>
+									{url ? <a href={url} target='_blank' rel='noreferrer'>Source</a> : 'No source link available'}
 								</Card.Subtitle>
 							}
 
 							{
-								shouldShowField("descendants") &&
-								<Card.Subtitle className="mb-2 color-grey">Comments count: {descendants}</Card.Subtitle>
+								shouldShowField('descendants') &&
+								<Card.Subtitle className='mb-2 color-grey'>Comments count: {descendants}</Card.Subtitle>
 							}
 
 							{
-								shouldShowField("text") &&
+								shouldShowField('text') &&
 								(text ?
-									<Card.Text as='span' className="bold color-dark-grey">
+									<Card.Text as='span' className='bold color-dark-grey'>
 										{parse(text)}
 									</Card.Text>
 									: <span className='bold color-dark-grey'>To read the text, visit the source</span>)
 							}
 						</Card.Body>
-						: <h6 className="error mt-20 mb-20">Some troubles in loading story</h6>
+						: <h6 className='error mt-20 mb-20'>Some troubles in loading story</h6>
 			}
 		</Card>
 	);

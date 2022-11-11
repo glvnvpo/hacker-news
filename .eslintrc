@@ -18,6 +18,11 @@
     "parser": "@babel/eslint-parser",
     "rules": {
         "semi": [1, "always"],
-        "indent": ["error", "tab"]
+        "indent": ["error", "tab"],
+        "quotes": ["error", "single", { "avoidEscape": true }],
+        "jsx-quotes": ["error", "prefer-single"],
+        "object-curly-spacing": ["error", "never"],
+        "array-bracket-spacing": ["error", "never"],
+        "arrow-spacing": "error"
     }
 }

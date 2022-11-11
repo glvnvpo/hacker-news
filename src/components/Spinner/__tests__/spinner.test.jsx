@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import {Spinner} from "../index";
+import {Spinner} from '../index';
 
 describe('Spinner', () => {
 	let wrapper;
@@ -11,20 +11,20 @@ describe('Spinner', () => {
 	});
 
 	it('should return spinner with correct style', () => {
-		const variant = "primary"; 
+		const variant = 'primary'; 
 		wrapper = mount(<Spinner variant={variant} />);
 		expect(wrapper.find('Spinner').prop('variant')).toBe(variant);
 	});
 	
 	it('should pass props', () => {
 		const props = {
-			variant: "primary",
+			variant: 'primary',
 			className: 'mt-20'
 		};
 		wrapper = mount(<Spinner {...props} />);
 		const expected = {
 			...props,
-			animation: "border"
+			animation: 'border'
 		};
 		expect(wrapper.find('Spinner').props()).toEqual(expected);
 	});

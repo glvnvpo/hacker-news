@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import {CommentCard} from "../index";
+import {CommentCard} from '../index';
 
 describe('CommentCard', () => {
 	let wrapper;

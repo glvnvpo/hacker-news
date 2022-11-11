@@ -1,8 +1,8 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import {BrowserRouter} from "react-router-dom";
-import {StoryCard} from "../index";
-import {MAIN_PAGE_PATH} from "../../../routing/constants";
+import {BrowserRouter} from 'react-router-dom';
+import {StoryCard} from '../index';
+import {MAIN_PAGE_PATH} from '../../../routing/constants';
 
 describe('StoryCard', () => {
 	let wrapper;
@@ -35,8 +35,8 @@ describe('StoryCard', () => {
 			story: {
 				...story,
 				kids: [],
-				text: "someText",
-				url: "https://reactjs.org/",
+				text: 'someText',
+				url: 'https://reactjs.org/',
 				descendants: 0
 			}
 		};
@@ -49,7 +49,7 @@ describe('StoryCard', () => {
 			story: {
 				...story,
 				kids: [],
-				text: "someText",
+				text: 'someText',
 				descendants: 0
 			}
 		};
@@ -65,14 +65,14 @@ describe('StoryCard', () => {
 				descendants: 0
 			}
 		};
-		const expected = "To read the text, visit the source";
+		const expected = 'To read the text, visit the source';
 		wrapper = mount(<StoryCard {...props} />);
 		expect(wrapper.text()).toMatch(expected);
 	});
 	
 	it('should render story with error', () => {
 		wrapper = mount(<StoryCard story={{}} />);
-		const expected = "Some troubles in loading story";
+		const expected = 'Some troubles in loading story';
 		expect(wrapper.text()).toBe(expected);
 	});
 

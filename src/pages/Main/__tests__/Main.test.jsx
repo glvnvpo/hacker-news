@@ -4,10 +4,10 @@ import axios from 'axios';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {createStore} from '@reduxjs/toolkit';
-import {isNull} from "lodash";
+import {isNull} from 'lodash';
 import {Main} from '../Main';
-import {NEW_STORIES as mockNEW_STORIES} from "../../../api/constants";
-import {waitForComponentToPaint} from "../../../jest/helpers/wait-for-component-to-paint";
+import {NEW_STORIES as mockNEW_STORIES} from '../../../api/constants';
+import {waitForComponentToPaint} from '../../../jest/helpers/wait-for-component-to-paint';
 
 let mockLoadNewStories = Promise.resolve({data: [10]});
 let mockLoadOneStory = Promise.resolve({

@@ -1,4 +1,4 @@
-import {getDateFromTimestamp} from "../get-date-from-timestamp";
+import {getDateFromTimestamp} from '../get-date-from-timestamp';
 
 describe('getDateFromTimestamp', () => {
 	it('should return correct date (without adding zeros)', () => {

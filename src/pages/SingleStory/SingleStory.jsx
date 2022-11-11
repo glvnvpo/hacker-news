@@ -1,18 +1,18 @@
 // @flow
 
 import React, {useState, useEffect}  from 'react';
-import {useParams, useNavigate, useLocation} from "react-router-dom";
-import {Button} from "react-bootstrap";
+import {useParams, useNavigate, useLocation} from 'react-router-dom';
+import {Button} from 'react-bootstrap';
 import axios from 'axios';
-import {isEmpty, isNull} from "lodash";
+import {isEmpty, isNull} from 'lodash';
 import './styles.scss';
 import type {Story, Comment, ID} from '../../types';
-import {ITEM} from "../../api/constants";
-import {MINUTE} from "../../constants/time";
-import {MAIN_PAGE_PATH} from "../../routing/constants";
-import {Spinner} from "../../components/Spinner";
-import {StoryCard} from "../../components/StoryCard";
-import {CommentCard} from "../../components/CommentCard";
+import {ITEM} from '../../api/constants';
+import {MINUTE} from '../../constants/time';
+import {MAIN_PAGE_PATH} from '../../routing/constants';
+import {Spinner} from '../../components/Spinner';
+import {StoryCard} from '../../components/StoryCard';
+import {CommentCard} from '../../components/CommentCard';
 
 type childrenCommentsToSave = {
 	[key: ID]: Comment
@@ -213,16 +213,16 @@ export const SingleStory = () => {
 	};
 
 	return (
-		<div className="single-story">
+		<div className='single-story'>
 			<div className='content'>
 
-				<Button className="mt-20 mb-10" onClick={() => goBackToStories()} variant="outline-primary">Go back to news</Button>
+				<Button className='mt-20 mb-10' onClick={() => goBackToStories()} variant='outline-primary'>Go back to news</Button>
 
 				<StoryCard isLoading={isStoryLoading} story={story} />
 
 				{
 					!isEmpty(story) &&
-					<Button onClick={(e) => updateStoryAndComments(id, e)} variant="outline-success">Update comments</Button>
+					<Button onClick={(e) => updateStoryAndComments(id, e)} variant='outline-success'>Update comments</Button>
 				}
 
 				<div className='comments mt-20 mb-20'>
@@ -232,7 +232,7 @@ export const SingleStory = () => {
 						: <h6 className='color-grey'>No comments found</h6>)
 					}
 
-					{ (isCommentsLoading && !isStoryLoading) ? <Spinner className="mt-20" /> :
+					{ (isCommentsLoading && !isStoryLoading) ? <Spinner className='mt-20' /> :
 						!isEmpty(comments) && comments.map((comment: Comment = {}) =>
 							<div className='comment-wrapper mt-20' key={comment.id}>
 								{ comment.by &&

@@ -1,7 +1,7 @@
 // @flow
 
 import React, {useEffect, useState} from 'react';
-import {useLocation} from "react-router-dom";
+import {useLocation} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {Button, Spinner} from 'react-bootstrap';
 import axios from 'axios';
@@ -9,10 +9,10 @@ import {isEmpty, isNull} from 'lodash';
 import './styles.scss';
 import type {Story, ID} from '../../types';
 import {setStories} from '../../store/stories';
-import {ITEM, NEW_STORIES} from "../../api/constants";
-import {MINUTE} from "../../constants/time";
+import {ITEM, NEW_STORIES} from '../../api/constants';
+import {MINUTE} from '../../constants/time';
 import {MAIN_PAGE_PATH} from '../../routing/constants';
-import {StoryCard} from "../../components/StoryCard";
+import {StoryCard} from '../../components/StoryCard';
 
 const STORIES_NUMBER = 100;
 
@@ -52,7 +52,7 @@ export const Main = () => {
 				await Promise.allSettled(promises)
 					.then(data =>
 						loadedStories = data
-							.filter(({status})=> status === 'fulfilled')
+							.filter(({status}) => status === 'fulfilled')
 							.map(({value}) => value)
 					)
 					.finally(() => {
@@ -64,7 +64,7 @@ export const Main = () => {
 	};
 
 	const loadOneStory = (id: ID) => {
-		return new Promise((resolve, reject)=> {
+		return new Promise((resolve, reject) => {
 			axios<Story>(ITEM(id))
 				.then(({data}) => !isNull(data) ? resolve(data) : reject())
 				.catch(err => reject(err));
@@ -72,15 +72,15 @@ export const Main = () => {
 	};
 
 	return (
-		<div className="main">
+		<div className='main'>
 			<div className='content'>
 				<div className='header bg-white'>
-					<h4 className="color-grey2">Latest news</h4>
-					<Button onClick={(e) => loadNewStories(e)} variant="outline-success">Update news</Button>
+					<h4 className='color-grey2'>Latest news</h4>
+					<Button onClick={(e) => loadNewStories(e)} variant='outline-success'>Update news</Button>
 				</div>
 
 				<div className='cards mt-10'>
-					{isLoading ? <Spinner animation="border" variant="secondary" className="mt-20" /> :
+					{isLoading ? <Spinner animation='border' variant='secondary' className='mt-20' /> :
 						(!isEmpty(stories)) ? stories.map((story: Story) =>
 							<StoryCard
 								story={story}
@@ -89,7 +89,7 @@ export const Main = () => {
 								to={`${MAIN_PAGE_PATH}/${story.id}`}
 								fieldsToShow={['descendants']}
 							/>
-						) : <h5 className="mt-20">No stories found :(</h5>
+						) : <h5 className='mt-20'>No stories found :(</h5>
 					}
 				</div>
 
