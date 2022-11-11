@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main should render Main page with correct card 1`] = `
+<Provider
+  store={
+    Object {
+      "@@observable": [Function],
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "createHref": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Main>
+        <div
+          className="main"
+        >
+          <div
+            className="content"
+          >
+            <div
+              className="header bg-white"
+            >
+              <h4
+                className="color-grey2"
+              >
+                Latest news
+              </h4>
+              <Button
+                active={false}
+                disabled={false}
+                onClick={[Function]}
+                variant="outline-success"
+              >
+                <button
+                  className="btn btn-outline-success"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Update news
+                </button>
+              </Button>
+            </div>
+            <div
+              className="cards mt-10"
+            >
+              <StoryCard
+                asLink={true}
+                fieldsToShow={
+                  Array [
+                    "descendants",
+                  ]
+                }
+                key="20"
+                story={
+                  Object {
+                    "by": "coolUser",
+                    "descendants": 10,
+                    "id": 20,
+                    "score": 4,
+                    "time": 1666689031,
+                    "title": "someTitle",
+                    "url": "https://reactjs.org/",
+                  }
+                }
+                to="/hacker-news/20"
+              >
+                <Card
+                  as={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    }
+                  }
+                  body={false}
+                  className="story mt-10 mb-20"
+                  to="/hacker-news/20"
+                >
+                  <Link
+                    className="story mt-10 mb-20 card"
+                    to="/hacker-news/20"
+                  >
+                    <a
+                      className="story mt-10 mb-20 card"
+                      href="/hacker-news/20"
+                      onClick={[Function]}
+                    >
+                      <CardBody>
+                        <div
+                          className="card-body"
+                        >
+                          <CardTitle
+                            className="color-orange"
+                          >
+                            <ForwardRef
+                              className="color-orange card-title"
+                            >
+                              <div
+                                className="color-orange card-title h5"
+                              >
+                                someTitle
+                              </div>
+                            </ForwardRef>
+                          </CardTitle>
+                          <CardSubtitle
+                            className="mb-2 color-grey"
+                          >
+                            <ForwardRef
+                              className="mb-2 color-grey card-subtitle"
+                            >
+                              <div
+                                className="mb-2 color-grey card-subtitle h6"
+                              >
+                                4
+                                 points | 
+                                coolUser
+                                 | 
+                                25.10.2022
+                              </div>
+                            </ForwardRef>
+                          </CardSubtitle>
+                          <CardSubtitle
+                            className="mb-2 color-grey"
+                          >
+                            <ForwardRef
+                              className="mb-2 color-grey card-subtitle"
+                            >
+                              <div
+                                className="mb-2 color-grey card-subtitle h6"
+                              >
+                                Comments count: 
+                                10
+                              </div>
+                            </ForwardRef>
+                          </CardSubtitle>
+                        </div>
+                      </CardBody>
+                    </a>
+                  </Link>
+                </Card>
+              </StoryCard>
+            </div>
+          </div>
+        </div>
+      </Main>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
