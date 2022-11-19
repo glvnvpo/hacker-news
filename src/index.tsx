@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {App} from './App';
 import './index.scss';
-import store from './store/store';
+import {store} from './store/store';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
