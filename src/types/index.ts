@@ -8,7 +8,7 @@ export type Story = {
     by: string;
     time: number | string;
     score: number | string;
-    kids?: Array<number | string>;
+    kids?: Array<ID>;
     text?: string;
     url?: string;
     descendants?: number | string;
@@ -21,7 +21,7 @@ export type Comment = {
     time: number | string;
     deleted?: boolean;
     dead?: boolean;
-    kids?: Array<number | string>;
+    kids?: Array<ID>;
     children?: Array<Comment>;
     showChildComment?: boolean;
     isLoadingChildren?: boolean;
