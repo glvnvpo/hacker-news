@@ -2,6 +2,8 @@
 
 export type ID = number | string;
 
+export type URL = string;
+
 export type Story = {
     id: ID;
     title: string;
