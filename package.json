@@ -40,7 +40,7 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.js"
+      "<rootDir>/src/setupTests.ts"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/dist/"
@@ -51,7 +51,7 @@
     ],
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/src/jest/__mocks__/styleMock.js"
+      "\\.(css|scss)$": "<rootDir>/src/jest/__mocks__/styleMock.ts"
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
@@ -78,6 +78,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@cfaester/enzyme-adapter-react-18": "^0.5.1",
+    "@types/enzyme": "^3.10.12",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.2",
     "eslint": "8.22.0",
