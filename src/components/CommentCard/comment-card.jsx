@@ -1,13 +1,14 @@
 // @flow
 
-import React, {ReactNode} from "react";
-import {Button, Card} from "react-bootstrap";
-import {isEmpty} from "lodash";
-import parse from "html-react-parser";
+import React, {ReactNode} from 'react';
+import {Button, Card} from 'react-bootstrap';
+import {isEmpty} from 'lodash';
+import parse from 'html-react-parser';
 import './styles.scss';
 import {Spinner} from '../Spinner';
+import {Sizes} from '../Spinner/spinner';
 import type {Comment} from '../../types';
-import {getDateFromTimestamp} from "../../helpers/get-date-from-timestamp";
+import {getDateFromTimestamp} from '../../helpers/get-date-from-timestamp';
 
 type Props = {
 	comment: Comment;
@@ -41,27 +42,27 @@ export const CommentCard = ({isParent=true, comment, showAnswers, children, ...r
 		return parse(text);
 	};
 
-	let classes = `${isParent ? "parent" : "child"} ${deleted ? 'deleted' : ''} ${dead ? 'dead' : ''}`;
+	let classes = `${isParent ? 'parent' : 'child'} ${deleted ? 'deleted' : ''} ${dead ? 'dead' : ''}`;
 
 	return (
 		<Card
 			className={`comment ${classes}`}
-			border={isParent && "primary"}
+			border={isParent && 'primary'}
 			{...rest}>
 			<Card.Body>
-				<Card.Subtitle className="mb-2 color-grey">
-					<span className="bold">{by}</span>{ by && '\u00A0|\u00A0'}{getDateFromTimestamp(time)}
+				<Card.Subtitle className='mb-2 color-grey'>
+					<span className='bold'>{by}</span>{ by && '\u00A0|\u00A0'}{getDateFromTimestamp(time)}
 				</Card.Subtitle>
-				<Card.Text className="bold color-dark-grey" as='span'>
+				<Card.Text className='bold color-dark-grey' as='span'>
 					{getContent(comment)}
 				</Card.Text>
 				{ (!isEmpty(kids) && isParent) &&
                         <Button
                         	onClick={() => showAnswers(comment)}
-                        	className="mt-20"
-                        	variant="light"
+                        	className='mt-20'
+                        	variant='light'
                         >
-                        	{ isLoadingChildren ? <Spinner size="sm" /> : getBtnText(showChildComment)}
+                        	{ isLoadingChildren ? <Spinner size={Sizes.SM} /> : getBtnText(showChildComment)}
                         </Button>
 				}
 				{children}
