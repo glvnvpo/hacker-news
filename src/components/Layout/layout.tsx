@@ -1,10 +1,10 @@
 // @flow
 
-import React from 'react';
+import React, {FC} from 'react';
 import {Outlet} from 'react-router-dom';
 import './styles.scss';
 
-export const Layout = () => {
+export const Layout: FC = () => {
 	return (
 		<>
 			<div className='layout bg-orange'>
