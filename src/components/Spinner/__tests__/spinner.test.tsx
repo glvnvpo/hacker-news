@@ -1,6 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {Spinner} from '../index';
+import {Variants} from '../spinner';
 
 describe('Spinner', () => {
 	let wrapper;
@@ -11,14 +12,14 @@ describe('Spinner', () => {
 	});
 
 	it('should return spinner with correct style', () => {
-		const variant = 'primary'; 
+		const variant = Variants.PRIMARY;
 		wrapper = mount(<Spinner variant={variant} />);
 		expect(wrapper.find('Spinner').prop('variant')).toBe(variant);
 	});
 	
 	it('should pass props', () => {
 		const props = {
-			variant: 'primary',
+			variant: Variants.PRIMARY,
 			className: 'mt-20'
 		};
 		wrapper = mount(<Spinner {...props} />);
