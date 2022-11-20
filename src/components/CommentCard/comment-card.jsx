@@ -6,6 +6,7 @@ import {isEmpty} from 'lodash';
 import parse from 'html-react-parser';
 import './styles.scss';
 import {Spinner} from '../Spinner';
+import {Sizes} from '../Spinner/spinner';
 import type {Comment} from '../../types';
 import {getDateFromTimestamp} from '../../helpers/get-date-from-timestamp';
 
@@ -61,7 +62,7 @@ export const CommentCard = ({isParent=true, comment, showAnswers, children, ...r
                         	className='mt-20'
                         	variant='light'
                         >
-                        	{ isLoadingChildren ? <Spinner size='sm' /> : getBtnText(showChildComment)}
+                        	{ isLoadingChildren ? <Spinner size={Sizes.SM} /> : getBtnText(showChildComment)}
                         </Button>
 				}
 				{children}
