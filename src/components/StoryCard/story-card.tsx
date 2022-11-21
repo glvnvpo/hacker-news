@@ -1,40 +1,47 @@
 // @flow
 
-import React from 'react';
+import React, {FC, HTMLAttributes} from 'react';
 import {Link} from 'react-router-dom';
 import {Card} from 'react-bootstrap';
 import {isEmpty} from 'lodash';
 import parse from 'html-react-parser';
 import './styles.scss';
 import {Spinner} from '../Spinner';
-import type {Story} from '../../types';
+import {Story} from '../../types';
 import {getDateFromTimestamp} from '../../helpers/get-date-from-timestamp';
 
+export enum Fields {
+	ALL= 'all',
+	URL = 'url',
+	TEXT = 'text'
+}
+
 type Props = {
-    story: Story;
+    story: Story | undefined;
     isLoading?: boolean;
 	asLink?: boolean;
 	to?: string;
-	fieldsToShow?: Array<string>;
+	extraFieldsToShow?: Array<Fields>;
 }
 
-export const StoryCard = ({isLoading=false, story, asLink=false, to, fieldsToShow=['all'], ...rest}: Props) => {
+export const StoryCard: FC<Props & HTMLAttributes<any>> = ({story, isLoading=false, asLink=false, to,
+															   extraFieldsToShow=[Fields.ALL], ...rest}) => {
 
-	let {title, score, by, time, url, text, descendants} = story;
+	let {title, score, by, time, url, text, descendants} = story || {};
 
-	const shouldShowField = (key: string): boolean => {
-		if (fieldsToShow.includes('all')) {
+	const shouldShowField = (key: Fields): boolean => {
+		if (extraFieldsToShow.includes(Fields.ALL)) {
 			return true;
 		}
 
-		return fieldsToShow.includes(key);
+		return extraFieldsToShow.includes(key);
 	};
 
 	return (
 		<Card
 			className='story mt-10 mb-20'
 			as={asLink ? Link : undefined}
-			to={to}
+			to={to || ''}
 			{...rest}
 		>
 			{
@@ -43,20 +50,18 @@ export const StoryCard = ({isLoading=false, story, asLink=false, to, fieldsToSho
 						<Card.Body>
 							<Card.Title className='color-orange'>{title}</Card.Title>
 							<Card.Subtitle className='mb-2 color-grey'>{score}&nbsp;points&nbsp;| {by}&nbsp;| {getDateFromTimestamp(time)}</Card.Subtitle>
+
 							{
-								shouldShowField('url') &&
-								<Card.Subtitle className='mb-2 color-grey'>
+								shouldShowField(Fields.URL) &&
+								<Card.Subtitle className='url mb-2 color-grey'>
 									{url ? <a href={url} target='_blank' rel='noreferrer'>Source</a> : 'No source link available'}
 								</Card.Subtitle>
 							}
 
-							{
-								shouldShowField('descendants') &&
-								<Card.Subtitle className='mb-2 color-grey'>Comments count: {descendants}</Card.Subtitle>
-							}
+							<Card.Subtitle className='comments-count mb-2 color-grey'>Comments count: {descendants}</Card.Subtitle>
 
 							{
-								shouldShowField('text') &&
+								shouldShowField(Fields.TEXT) &&
 								(text ?
 									<Card.Text as='span' className='bold color-dark-grey'>
 										{parse(text)}
