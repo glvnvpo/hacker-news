@@ -37,7 +37,7 @@ export const Main = () => {
 		timer = setTimeout(loadStoriesEachMinute, MINUTE);
 	};
 
-	const loadNewStories = (event? = undefined) => {
+	const loadNewStories = (event = undefined) => {
 
 		if (event) {
 			setLoading(true);
@@ -87,7 +87,7 @@ export const Main = () => {
 								key={story.id}
 								asLink
 								to={`${MAIN_PAGE_PATH}/${story.id}`}
-								fieldsToShow={['descendants']}
+								extraFieldsToShow={[]}
 							/>
 						) : <h5 className='mt-20'>No stories found :(</h5>
 					}
