@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryCard should render correct StoryCard 1`] = `
+<StoryCard
+  story={
+    Object {
+      "by": "someUser",
+      "descendants": 1,
+      "id": 123,
+      "score": 2,
+      "text": "someText",
+      "time": "1662661417",
+      "title": "someTitle",
+      "url": "https://reactjs.org/",
+    }
+  }
+>
+  <Card
+    body={false}
+    className="story mt-10 mb-20"
+    to=""
+  >
+    <div
+      className="story mt-10 mb-20 card"
+      to=""
+    >
+      <CardBody>
+        <div
+          className="card-body"
+        >
+          <CardTitle
+            className="color-orange"
+          >
+            <ForwardRef
+              className="color-orange card-title"
+            >
+              <div
+                className="color-orange card-title h5"
+              >
+                someTitle
+              </div>
+            </ForwardRef>
+          </CardTitle>
+          <CardSubtitle
+            className="mb-2 color-grey"
+          >
+            <ForwardRef
+              className="mb-2 color-grey card-subtitle"
+            >
+              <div
+                className="mb-2 color-grey card-subtitle h6"
+              >
+                2
+                 points | 
+                someUser
+                 | 
+                08.09.2022
+              </div>
+            </ForwardRef>
+          </CardSubtitle>
+          <CardSubtitle
+            className="url mb-2 color-grey"
+          >
+            <ForwardRef
+              className="url mb-2 color-grey card-subtitle"
+            >
+              <div
+                className="url mb-2 color-grey card-subtitle h6"
+              >
+                <a
+                  href="https://reactjs.org/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Source
+                </a>
+              </div>
+            </ForwardRef>
+          </CardSubtitle>
+          <CardSubtitle
+            className="comments-count mb-2 color-grey"
+          >
+            <ForwardRef
+              className="comments-count mb-2 color-grey card-subtitle"
+            >
+              <div
+                className="comments-count mb-2 color-grey card-subtitle h6"
+              >
+                Comments count: 
+                1
+              </div>
+            </ForwardRef>
+          </CardSubtitle>
+          <CardText
+            as="span"
+            className="bold color-dark-grey"
+          >
+            <span
+              className="bold color-dark-grey card-text"
+            >
+              someText
+            </span>
+          </CardText>
+        </div>
+      </CardBody>
+    </div>
+  </Card>
+</StoryCard>
+`;

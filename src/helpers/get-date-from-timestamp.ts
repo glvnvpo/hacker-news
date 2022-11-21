@@ -1,6 +1,6 @@
 // @flow
 
-export const getDateFromTimestamp = (timestamp: string | number): string => {
+export const getDateFromTimestamp = (timestamp: string | number | undefined): string => {
 	const date = new Date(Number(timestamp) * 1000);
 
 	const day = date.getDate();

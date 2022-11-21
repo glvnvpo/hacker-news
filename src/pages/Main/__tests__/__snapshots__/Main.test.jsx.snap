@@ -78,11 +78,7 @@ exports[`Main should render Main page with correct card 1`] = `
             >
               <StoryCard
                 asLink={true}
-                fieldsToShow={
-                  Array [
-                    "descendants",
-                  ]
-                }
+                extraFieldsToShow={Array []}
                 key="20"
                 story={
                   Object {
@@ -152,13 +148,13 @@ exports[`Main should render Main page with correct card 1`] = `
                             </ForwardRef>
                           </CardSubtitle>
                           <CardSubtitle
-                            className="mb-2 color-grey"
+                            className="comments-count mb-2 color-grey"
                           >
                             <ForwardRef
-                              className="mb-2 color-grey card-subtitle"
+                              className="comments-count mb-2 color-grey card-subtitle"
                             >
                               <div
-                                className="mb-2 color-grey card-subtitle h6"
+                                className="comments-count mb-2 color-grey card-subtitle h6"
                               >
                                 Comments count: 
                                 10
