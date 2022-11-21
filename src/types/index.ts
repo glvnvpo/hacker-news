@@ -18,7 +18,7 @@ export type Story = {
 
 export type Comment = {
     id: ID;
-    by: string;
+    by?: string;
     text: string;
     time: number | string;
     deleted?: boolean;

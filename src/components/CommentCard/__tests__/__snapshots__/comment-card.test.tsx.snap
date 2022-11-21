@@ -87,7 +87,6 @@ exports[`CommentCard should render correct card 1`] = `
           >
             <Card
               body={false}
-              border={false}
               className="comment child  "
             >
               <div
