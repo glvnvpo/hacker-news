@@ -1,6 +1,7 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {mount, ReactWrapper} from 'enzyme';
 import {CommentCard} from '../index';
+import type {Comment} from '../../../types';
 
 describe('CommentCard', () => {
 	let wrapper;
@@ -22,7 +23,7 @@ describe('CommentCard', () => {
 	};
 	const showAnswers = jest.fn();
 
-	const getComponent = (parentComment: Comment) => {
+	const getComponent = (parentComment: Comment): ReactWrapper => {
 		return mount(
 			<CommentCard comment={parentComment} showAnswers={showAnswers}>
 				<CommentCard comment={childComment} isParent={false}/>
