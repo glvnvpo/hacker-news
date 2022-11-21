@@ -1,6 +1,6 @@
 // @flow
 
-import React, {ReactNode} from 'react';
+import React, {FC, ReactNode} from 'react';
 import {Button, Card} from 'react-bootstrap';
 import {isEmpty} from 'lodash';
 import parse from 'html-react-parser';
@@ -17,18 +17,19 @@ type Props = {
 	children?: ReactNode;
 }
 
-export const CommentCard = ({isParent=true, comment, showAnswers, children, ...rest}: Props) => {
+export const CommentCard: FC<Props> = ({comment, isParent = true,
+										   showAnswers, children, ...rest}) => {
 
 	let {by, time, deleted, dead, kids, isLoadingChildren, showChildComment} = comment;
 	
-	const getBtnText = (isOpen: boolean) => {
+	const getBtnText = (isOpen: boolean | undefined): string => {
 		if (isOpen) {
 			return 'Hide answers';
 		}
-		else return 'Show answers';
+		return 'Show answers';
 	};
 
-	const getContent = (comment: Comment) => {
+	const getContent = (comment: Comment): string | JSX.Element | JSX.Element[] => {
 		const {text, deleted, dead} = comment;
 
 		if (deleted) {
@@ -42,12 +43,12 @@ export const CommentCard = ({isParent=true, comment, showAnswers, children, ...r
 		return parse(text);
 	};
 
-	let classes = `${isParent ? 'parent' : 'child'} ${deleted ? 'deleted' : ''} ${dead ? 'dead' : ''}`;
+	let classes: string = `${isParent ? 'parent' : 'child'} ${deleted ? 'deleted' : ''} ${dead ? 'dead' : ''}`;
 
 	return (
 		<Card
 			className={`comment ${classes}`}
-			border={isParent && 'primary'}
+			border={isParent ? 'primary' : undefined}
 			{...rest}>
 			<Card.Body>
 				<Card.Subtitle className='mb-2 color-grey'>
@@ -56,7 +57,7 @@ export const CommentCard = ({isParent=true, comment, showAnswers, children, ...r
 				<Card.Text className='bold color-dark-grey' as='span'>
 					{getContent(comment)}
 				</Card.Text>
-				{ (!isEmpty(kids) && isParent) &&
+				{ (!isEmpty(kids) && isParent && showAnswers) &&
                         <Button
                         	onClick={() => showAnswers(comment)}
                         	className='mt-20'
