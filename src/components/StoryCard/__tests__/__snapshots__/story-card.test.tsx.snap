@@ -3,7 +3,7 @@
 exports[`StoryCard should render correct StoryCard 1`] = `
 <StoryCard
   story={
-    Object {
+    {
       "by": "someUser",
       "descendants": 1,
       "id": 123,

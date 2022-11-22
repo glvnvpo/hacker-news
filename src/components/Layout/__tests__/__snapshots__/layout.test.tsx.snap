@@ -4,7 +4,7 @@ exports[`Layout should render correct layout 1`] = `
 <BrowserRouter>
   <Router
     location={
-      Object {
+      {
         "hash": "",
         "key": "default",
         "pathname": "/",
@@ -14,12 +14,12 @@ exports[`Layout should render correct layout 1`] = `
     }
     navigationType="POP"
     navigator={
-      Object {
+      {
         "action": "POP",
         "createHref": [Function],
         "go": [Function],
         "listen": [Function],
-        "location": Object {
+        "location": {
           "hash": "",
           "key": "default",
           "pathname": "/",
@@ -34,17 +34,17 @@ exports[`Layout should render correct layout 1`] = `
     <Routes>
       <RenderedRoute
         match={
-          Object {
-            "params": Object {
+          {
+            "params": {
               "*": "",
             },
             "pathname": "/",
             "pathnameBase": "/",
-            "route": Object {
+            "route": {
               "action": undefined,
               "caseSensitive": undefined,
-              "children": Array [
-                Object {
+              "children": [
+                {
                   "action": undefined,
                   "caseSensitive": undefined,
                   "element": <div>
@@ -73,19 +73,19 @@ exports[`Layout should render correct layout 1`] = `
           }
         }
         routeContext={
-          Object {
-            "matches": Array [
-              Object {
-                "params": Object {
+          {
+            "matches": [
+              {
+                "params": {
                   "*": "",
                 },
                 "pathname": "/",
                 "pathnameBase": "/",
-                "route": Object {
+                "route": {
                   "action": undefined,
                   "caseSensitive": undefined,
-                  "children": Array [
-                    Object {
+                  "children": [
+                    {
                       "action": undefined,
                       "caseSensitive": undefined,
                       "element": <div>
@@ -115,13 +115,13 @@ exports[`Layout should render correct layout 1`] = `
             ],
             "outlet": <RenderedRoute
               match={
-                Object {
-                  "params": Object {
+                {
+                  "params": {
                     "*": "",
                   },
                   "pathname": "/",
                   "pathnameBase": "/",
-                  "route": Object {
+                  "route": {
                     "action": undefined,
                     "caseSensitive": undefined,
                     "element": <div>
@@ -139,19 +139,19 @@ exports[`Layout should render correct layout 1`] = `
                 }
               }
               routeContext={
-                Object {
-                  "matches": Array [
-                    Object {
-                      "params": Object {
+                {
+                  "matches": [
+                    {
+                      "params": {
                         "*": "",
                       },
                       "pathname": "/",
                       "pathnameBase": "/",
-                      "route": Object {
+                      "route": {
                         "action": undefined,
                         "caseSensitive": undefined,
-                        "children": Array [
-                          Object {
+                        "children": [
+                          {
                             "action": undefined,
                             "caseSensitive": undefined,
                             "element": <div>
@@ -178,13 +178,13 @@ exports[`Layout should render correct layout 1`] = `
                         "shouldRevalidate": undefined,
                       },
                     },
-                    Object {
-                      "params": Object {
+                    {
+                      "params": {
                         "*": "",
                       },
                       "pathname": "/",
                       "pathnameBase": "/",
-                      "route": Object {
+                      "route": {
                         "action": undefined,
                         "caseSensitive": undefined,
                         "element": <div>
@@ -225,13 +225,13 @@ exports[`Layout should render correct layout 1`] = `
           <Outlet>
             <RenderedRoute
               match={
-                Object {
-                  "params": Object {
+                {
+                  "params": {
                     "*": "",
                   },
                   "pathname": "/",
                   "pathnameBase": "/",
-                  "route": Object {
+                  "route": {
                     "action": undefined,
                     "caseSensitive": undefined,
                     "element": <div>
@@ -249,19 +249,19 @@ exports[`Layout should render correct layout 1`] = `
                 }
               }
               routeContext={
-                Object {
-                  "matches": Array [
-                    Object {
-                      "params": Object {
+                {
+                  "matches": [
+                    {
+                      "params": {
                         "*": "",
                       },
                       "pathname": "/",
                       "pathnameBase": "/",
-                      "route": Object {
+                      "route": {
                         "action": undefined,
                         "caseSensitive": undefined,
-                        "children": Array [
-                          Object {
+                        "children": [
+                          {
                             "action": undefined,
                             "caseSensitive": undefined,
                             "element": <div>
@@ -288,13 +288,13 @@ exports[`Layout should render correct layout 1`] = `
                         "shouldRevalidate": undefined,
                       },
                     },
-                    Object {
-                      "params": Object {
+                    {
+                      "params": {
                         "*": "",
                       },
                       "pathname": "/",
                       "pathnameBase": "/",
-                      "route": Object {
+                      "route": {
                         "action": undefined,
                         "caseSensitive": undefined,
                         "element": <div>

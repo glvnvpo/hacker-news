@@ -3,10 +3,10 @@
 exports[`CommentCard should render correct card 1`] = `
 <CommentCard
   comment={
-    Object {
+    {
       "by": "coolUser",
       "id": 123,
-      "kids": Array [
+      "kids": [
         124,
       ],
       "showChildComment": true,
@@ -75,7 +75,7 @@ exports[`CommentCard should render correct card 1`] = `
           </Button>
           <CommentCard
             comment={
-              Object {
+              {
                 "by": "coolUser124",
                 "id": 124,
                 "parent": 123,

@@ -1,8 +1,7 @@
 // @flow
 
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState, MouseEvent} from 'react';
 import {useLocation} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
 import {Button, Spinner} from 'react-bootstrap';
 import axios from 'axios';
 import {isEmpty, isNull} from 'lodash';
@@ -13,31 +12,32 @@ import {ITEM, NEW_STORIES} from '../../api/constants';
 import {MINUTE} from '../../constants/time';
 import {MAIN_PAGE_PATH} from '../../routing/constants';
 import {StoryCard} from '../../components/StoryCard';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 
 const STORIES_NUMBER = 100;
 
-export const Main = () => {
+export const Main: FC = () => {
 
-	const stories = useSelector(state => state.stories.value);
-	const dispatch = useDispatch();
+	const stories = useAppSelector(state => state.stories.value);
+	const dispatch = useAppDispatch();
 
-	const [isLoading, setLoading] = useState(stories.length <= 0);
+	const [isLoading, setLoading] = useState<boolean>(stories.length <= 0);
 
 	let location = useLocation();
 
-	let timer;
+	let timer: NodeJS.Timeout | undefined;
 
 	useEffect(() => {
 		loadStoriesEachMinute();
 		return () => clearTimeout(timer);
 	}, [location?.pathname]);
 
-	const loadStoriesEachMinute = () => {
+	const loadStoriesEachMinute = ():void => {
 		loadNewStories();
 		timer = setTimeout(loadStoriesEachMinute, MINUTE);
 	};
 
-	const loadNewStories = (event = undefined) => {
+	const loadNewStories = (event?: MouseEvent):void => {
 
 		if (event) {
 			setLoading(true);
@@ -46,13 +46,14 @@ export const Main = () => {
 		axios<ID[]>(NEW_STORIES())
 			.then(async ({data}) => {
 				const newestStories = [...data.slice(0, STORIES_NUMBER)];
-				let loadedStories = [];
+				let loadedStories: Story[] = [];
 				const promises = newestStories.map(loadOneStory);
 
 				await Promise.allSettled(promises)
 					.then(data =>
 						loadedStories = data
 							.filter(({status}) => status === 'fulfilled')
+							// @ts-ignore
 							.map(({value}) => value)
 					)
 					.finally(() => {
