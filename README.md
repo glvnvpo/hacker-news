@@ -4,7 +4,7 @@
 
 За основу взято тестовое задание [Avito](https://github.com/avito-tech/sx-frontend-trainee-assignment).
 
-Стек: `React`, `React Router v6`, `JavaScript`, `Axios`, `Lodash`, `Bootstrap`, `SCSS/SASS`, `Jest`, `Enzyme`, `Redux`, `Babel`, `ESLint`, `Flow`, `html-react-parser`.`
+Стек: `React`, `React Router v6`, `TypeScript`, `JavaScript`, `Axios`, `Lodash`, `Bootstrap`, `SCSS/SASS`, `Jest`, `Enzyme`, `Redux`, `Babel`, `ESLint`, `Flow`, `html-react-parser`.`
 
 Также было использовано [Hacker News API](https://github.com/HackerNews/API).
 
@@ -21,8 +21,18 @@
   - кнопка для возвращения обратно на главную страницу;
   - кнопка для отображения вложенных комментариев (при наличии у комментария вложенных комментов).
 
+### Установка приложения
+
+### `npm install`
+
 ### Запуск приложения
 
 ### `npm start`
 
 Приложение запускается по адресу [http://localhost:3000](http://localhost:3000)
+
+### Запуск тестов
+
+### `npm test`
+
+
