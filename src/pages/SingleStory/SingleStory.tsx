@@ -1,36 +1,38 @@
 // @flow
 
-import React, {useState, useEffect}  from 'react';
-import {useParams, useNavigate, useLocation} from "react-router-dom";
-import {Button} from "react-bootstrap";
+import React, {FC, useState, useEffect, MouseEvent}  from 'react';
+import {useParams, useNavigate, useLocation} from 'react-router-dom';
+import {Button} from 'react-bootstrap';
 import axios from 'axios';
-import {isEmpty, isNull} from "lodash";
+import {isEmpty, isNull} from 'lodash';
 import './styles.scss';
 import type {Story, Comment, ID} from '../../types';
-import {ITEM} from "../../api/constants";
-import {MINUTE} from "../../constants/time";
-import {MAIN_PAGE_PATH} from "../../routing/constants";
-import {Spinner} from "../../components/Spinner";
-import {StoryCard} from "../../components/StoryCard";
-import {CommentCard} from "../../components/CommentCard";
+import {ITEM} from '../../api/constants';
+import {MINUTE} from '../../constants/time';
+import {MAIN_PAGE_PATH} from '../../routing/constants';
+import {Spinner} from '../../components/Spinner';
+import {StoryCard} from '../../components/StoryCard';
+import {CommentCard} from '../../components/CommentCard';
 
 type childrenCommentsToSave = {
 	[key: ID]: Comment
 }
 
-export const SingleStory = () => {
-	const {id} = useParams();
+export const SingleStory: FC = () => {
 
-	const [story, setStory] = useState<Story>({});
+	const {id: idStory} = useParams<string>();
+	const id = Number(idStory);
+
+	const [story, setStory] = useState<Story>();
 	const [comments, setComments] = useState<Comment[]>([]);
 	const [childrenComments, setChildrenComments] = useState<childrenCommentsToSave>({});
-	const [isStoryLoading, setStoryLoading] = useState(true);
-	const [isCommentsLoading, setCommentsLoading] = useState(true);
+	const [isStoryLoading, setStoryLoading] = useState<boolean>(true);
+	const [isCommentsLoading, setCommentsLoading] = useState<boolean>(true);
 
 	const navigate = useNavigate();
 	let location = useLocation();
 
-	let timer;
+	let timer: NodeJS.Timeout | undefined;
 
 	useEffect(() => {
 		updateStoryAndCommentsEachMinute(id);
@@ -46,7 +48,7 @@ export const SingleStory = () => {
 						resolve(data);
 					}
 					else {
-						setStory({});
+						setStory(undefined);
 						reject('No data');
 					}
 				})
@@ -55,7 +57,7 @@ export const SingleStory = () => {
 		});
 	};
 
-	const updateStoryAndComments = (id: ID, event? = undefined) => {
+	const updateStoryAndComments = (id: ID, event?: MouseEvent) => {
 		if (event) {
 			setCommentsLoading(true);
 		}
@@ -82,6 +84,7 @@ export const SingleStory = () => {
 				.then(data => {
 					const loadedComments = data
 						.filter(({status}) => status === 'fulfilled')
+						// @ts-ignore
 						.map(({value}) => value);
 
 					setComments(prevComments => {
@@ -112,7 +115,7 @@ export const SingleStory = () => {
 		}
 	};
 
-	const loadChildrenComments = (parentComment: Comment) => {
+	const loadChildrenComments = (parentComment: Comment): Promise<any> => {
 		const {kids} = parentComment;
 
 		return new Promise<void>(resolve => {
@@ -122,6 +125,7 @@ export const SingleStory = () => {
 					.then(data => {
 						data
 							.filter(({status}) => status === 'fulfilled')
+							// @ts-ignore
 							.forEach(({value}) => {
 								setChildrenComments(prevChildrenComments => (
 									{
@@ -173,7 +177,7 @@ export const SingleStory = () => {
 		});
 	};
 
-	const showChildrenComments = (parentComment: Comment, stayOpenChildrenComments?: boolean = false) => {
+	const showChildrenComments = (parentComment: Comment, stayOpenChildrenComments: boolean = false) => {
 		const {id, showChildComment} = parentComment;
 
 		if (stayOpenChildrenComments && showChildComment) {
@@ -213,16 +217,16 @@ export const SingleStory = () => {
 	};
 
 	return (
-		<div className="single-story">
+		<div className='single-story'>
 			<div className='content'>
 
-				<Button className="mt-20 mb-10" onClick={() => goBackToStories()} variant="outline-primary">Go back to news</Button>
+				<Button className='mt-20 mb-10' onClick={() => goBackToStories()} variant='outline-primary'>Go back to news</Button>
 
 				<StoryCard isLoading={isStoryLoading} story={story} />
 
 				{
 					!isEmpty(story) &&
-					<Button onClick={(e) => updateStoryAndComments(id, e)} variant="outline-success">Update comments</Button>
+					<Button onClick={(e) => updateStoryAndComments(id, e)} variant='outline-success'>Update comments</Button>
 				}
 
 				<div className='comments mt-20 mb-20'>
@@ -232,8 +236,8 @@ export const SingleStory = () => {
 						: <h6 className='color-grey'>No comments found</h6>)
 					}
 
-					{ (isCommentsLoading && !isStoryLoading) ? <Spinner className="mt-20" /> :
-						!isEmpty(comments) && comments.map((comment: Comment = {}) =>
+					{ (isCommentsLoading && !isStoryLoading) ? <Spinner className='mt-20' /> :
+						!isEmpty(comments) && comments.map((comment: Comment) =>
 							<div className='comment-wrapper mt-20' key={comment.id}>
 								{ comment.by &&
 									<CommentCard
