@@ -1,16 +1,17 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {mount, ReactWrapper} from 'enzyme';
 import axios from 'axios';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {createStore} from '@reduxjs/toolkit';
 import {isNull} from 'lodash';
 import {Main} from '../Main';
+import {Story} from '../../../types';
 import {NEW_STORIES as mockNEW_STORIES} from '../../../api/constants';
 import {waitForComponentToPaint} from '../../../jest/helpers/wait-for-component-to-paint';
 
 let mockLoadNewStories = Promise.resolve({data: [10]});
-let mockLoadOneStory = Promise.resolve({
+let mockLoadOneStory: Promise<{ data: Story | null }> = Promise.resolve({
 	data: {
 		id: 10,
 		title: 'someTitle',
@@ -50,7 +51,7 @@ describe('Main', () => {
 		descendants: 10
 	}];
 	
-	const getWrapper = (initStore = initValue) => {
+	const getWrapper = (initStore: Story[] = initValue): ReactWrapper => {
 		const store = createStore(() => ({
 			stories: {
 				value: initStore
