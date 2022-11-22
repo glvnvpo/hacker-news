@@ -3,7 +3,7 @@
 exports[`Main should render Main page with correct card 1`] = `
 <Provider
   store={
-    Object {
+    {
       "@@observable": [Function],
       "dispatch": [Function],
       "getState": [Function],
@@ -15,7 +15,7 @@ exports[`Main should render Main page with correct card 1`] = `
   <BrowserRouter>
     <Router
       location={
-        Object {
+        {
           "hash": "",
           "key": "default",
           "pathname": "/",
@@ -25,12 +25,12 @@ exports[`Main should render Main page with correct card 1`] = `
       }
       navigationType="POP"
       navigator={
-        Object {
+        {
           "action": "POP",
           "createHref": [Function],
           "go": [Function],
           "listen": [Function],
-          "location": Object {
+          "location": {
             "hash": "",
             "key": "default",
             "pathname": "/",
@@ -78,10 +78,10 @@ exports[`Main should render Main page with correct card 1`] = `
             >
               <StoryCard
                 asLink={true}
-                extraFieldsToShow={Array []}
+                extraFieldsToShow={[]}
                 key="20"
                 story={
-                  Object {
+                  {
                     "by": "coolUser",
                     "descendants": 10,
                     "id": 20,
@@ -95,7 +95,7 @@ exports[`Main should render Main page with correct card 1`] = `
               >
                 <Card
                   as={
-                    Object {
+                    {
                       "$$typeof": Symbol(react.forward_ref),
                       "render": [Function],
                     }
