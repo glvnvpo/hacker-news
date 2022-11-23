@@ -3,7 +3,6 @@
 import React, {FC} from 'react';
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import {Main, SingleStory} from './pages';
-import './App.scss';
 import {Layout} from './components/Layout';
 import {MAIN_PAGE_PATH, ROOT_PATH, SINGLE_STORY_PAGE_PATH} from './routing/constants';
 
