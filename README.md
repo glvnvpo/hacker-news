@@ -6,7 +6,7 @@
 
 За основу взято тестовое задание [Avito](https://github.com/avito-tech/sx-frontend-trainee-assignment).
 
-Стек: `React`, `React Router v6`, `TypeScript`, `JavaScript`, `Axios`, `Lodash`, `Bootstrap`, `SCSS/SASS`, `Jest`, `Enzyme`, `Redux`, `Babel`, `ESLint`, `Flow`, `html-react-parser`, `Netlify`.`
+Стек: `React`, `React Router v6`, `TypeScript`, `JavaScript (ES6+)`, `Axios`, `Lodash`, `Bootstrap`, `SCSS/SASS`, `Jest`, `Enzyme`, `Redux`, `Babel`, `ESLint`, `Flow`, `html-react-parser`, `Netlify`.`
 
 Также было использовано [Hacker News API](https://github.com/HackerNews/API).
 
