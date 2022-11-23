@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleStory should render Single story when loading 1`] = `
+<BrowserRouter>
+  <Router
+    location={
+      {
+        "hash": "",
+        "key": "default",
+        "pathname": "/",
+        "search": "",
+        "state": null,
+      }
+    }
+    navigationType="POP"
+    navigator={
+      {
+        "action": "POP",
+        "createHref": [Function],
+        "go": [Function],
+        "listen": [Function],
+        "location": {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <SingleStory>
+      <div
+        className="single-story"
+      >
+        <div
+          className="content"
+        >
+          <Button
+            active={false}
+            className="go-back mt-20 mb-10"
+            disabled={false}
+            onClick={[Function]}
+            variant="outline-primary"
+          >
+            <button
+              className="go-back mt-20 mb-10 btn btn-outline-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Go back to news
+            </button>
+          </Button>
+          <StoryCard
+            isLoading={true}
+          >
+            <Card
+              body={false}
+              className="story mt-10 mb-20"
+              to=""
+            >
+              <div
+                className="story mt-10 mb-20 card"
+                to=""
+              >
+                <SpinnerComponent
+                  className="mt-20 mb-20"
+                >
+                  <div
+                    className="spinner"
+                  >
+                    <Spinner
+                      animation="border"
+                      className="mt-20 mb-20"
+                      variant="secondary"
+                    >
+                      <div
+                        className="mt-20 mb-20 spinner-border text-secondary"
+                      />
+                    </Spinner>
+                  </div>
+                </SpinnerComponent>
+              </div>
+            </Card>
+          </StoryCard>
+          <div
+            className="comments mt-20 mb-20"
+          />
+        </div>
+      </div>
+    </SingleStory>
+  </Router>
+</BrowserRouter>
+`;

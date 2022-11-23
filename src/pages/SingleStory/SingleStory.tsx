@@ -220,7 +220,7 @@ export const SingleStory: FC = () => {
 		<div className='single-story'>
 			<div className='content'>
 
-				<Button className='mt-20 mb-10' onClick={() => goBackToStories()} variant='outline-primary'>Go back to news</Button>
+				<Button className='go-back mt-20 mb-10' onClick={() => goBackToStories()} variant='outline-primary'>Go back to news</Button>
 
 				<StoryCard isLoading={isStoryLoading} story={story} />
 
