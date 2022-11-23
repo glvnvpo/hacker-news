@@ -2,9 +2,11 @@
 
 Данное приложение по отображению новостей создано для примера кода.
 
+[Деплой приложения](https://boisterous-cranachan-6a78d7.netlify.app)
+
 За основу взято тестовое задание [Avito](https://github.com/avito-tech/sx-frontend-trainee-assignment).
 
-Стек: `React`, `React Router v6`, `TypeScript`, `JavaScript`, `Axios`, `Lodash`, `Bootstrap`, `SCSS/SASS`, `Jest`, `Enzyme`, `Redux`, `Babel`, `ESLint`, `Flow`, `html-react-parser`.`
+Стек: `React`, `React Router v6`, `TypeScript`, `JavaScript`, `Axios`, `Lodash`, `Bootstrap`, `SCSS/SASS`, `Jest`, `Enzyme`, `Redux`, `Babel`, `ESLint`, `Flow`, `html-react-parser`, `Netlify`.`
 
 Также было использовано [Hacker News API](https://github.com/HackerNews/API).
 
