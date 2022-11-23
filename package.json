@@ -23,7 +23,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "babel src -d dist",
+    "build": "react-scripts build",
+    "build-babel": "babel src -d dist",
     "test": "jest --coverage",
     "test:precommit": "jest --silent --passWithNoTests",
     "flow": "flow"
