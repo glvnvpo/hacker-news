@@ -27,7 +27,9 @@
     "build-babel": "babel src -d dist",
     "test": "jest --coverage",
     "test:precommit": "jest --silent --passWithNoTests",
-    "flow": "flow"
+    "flow": "flow",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "pre-commit": {
     "run": [
