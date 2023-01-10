@@ -7,7 +7,8 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.27.2",
+    "@types/lodash": "^4.14.189",
+    "axios": "^1.1.3",
     "bootstrap": "^5.2.1",
     "html-react-parser": "^3.0.4",
     "lodash": "^4.17.21",
@@ -22,7 +23,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "babel src -d dist",
+    "build": "react-scripts build",
+    "build-babel": "babel src -d dist",
     "test": "jest --coverage",
     "test:precommit": "jest --silent --passWithNoTests",
     "flow": "flow"
@@ -36,11 +38,24 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "jest": {
+    "setupFiles": [
+      "<rootDir>/src/jest/setupFile.ts"
+    ],
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.js"
+      "<rootDir>/src/setupTests.ts"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/dist/"
@@ -51,7 +66,7 @@
     ],
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/src/jest/__mocks__/styleMock.js"
+      "\\.(css|scss)$": "<rootDir>/src/jest/__mocks__/styleMock.ts"
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
@@ -78,14 +93,27 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@cfaester/enzyme-adapter-react-18": "^0.5.1",
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/builder-webpack5": "^6.5.15",
+    "@storybook/manager-webpack5": "^6.5.15",
+    "@storybook/node-logger": "^6.5.15",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.15",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/enzyme": "^3.10.12",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.2",
     "eslint": "8.22.0",
     "flow-bin": "^0.187.0",
-    "jest": "^27.5.1",
+    "jest": "^29.2.1",
     "jsdom": "20.0.1",
     "jsdom-global": "3.0.2",
-    "sass": "^1.55.0",
-    "webpack": "^5.74.0"
+    "prop-types": "^15.8.1",
+    "sass": "^1.57.1",
+    "webpack": "^5.75.0"
   }
 }
