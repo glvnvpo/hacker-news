@@ -20,7 +20,8 @@ export default {
 				}
 			}
 		}
-	}
+	},
+	parameters: {controls: {sort: 'requiredFirst'}},
 } as ComponentMeta<typeof Spinner>;
 
 const Template: ComponentStory<typeof Spinner> = (args) => <Spinner {...args} />;

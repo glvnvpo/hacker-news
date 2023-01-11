@@ -9,3 +9,6 @@ export default {
 } as ComponentMeta<typeof Layout>;
 
 export const Default: ComponentStory<typeof Layout> = () => <div><Layout/></div>;
+Default.parameters = {
+	controls: {hideNoControlsWarning: true},
+};
