@@ -4,7 +4,7 @@
 
 [Деплой приложения](https://boisterous-cranachan-6a78d7.netlify.app)
 
-[Storybook](https://63bd92193d199f0cfea6c9f1--loquacious-unicorn-a32d6f.netlify.app)
+[Storybook](https://63c7e9053dfc300009990ae4--loquacious-unicorn-a32d6f.netlify.app)
 
 За основу взято тестовое задание [Avito](https://github.com/avito-tech/sx-frontend-trainee-assignment).
 
